@@ -1,0 +1,539 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.customer-home-page{
+    min-height:100vh;
+    display:flex;
+    background:#f5f7fa;
+    color:#1f2937;
+}
+
+
+.customer-home-sidebar{
+    width:245px;
+    min-height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    padding:28px 18px;
+    background:#111827;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    z-index:100;
+}
+
+
+.customer-home-logo{
+    padding-left:10px;
+    margin-bottom:40px;
+    font-size:22px;
+    font-weight:700;
+}
+
+
+.customer-home-sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+
+.customer-home-sidebar nav button,
+.customer-home-sidebar-bottom button{
+    width:100%;
+    position:relative;
+    border:none;
+    border-radius:8px;
+    padding:13px 15px;
+    background:transparent;
+    color:#cbd5e1;
+    text-align:left;
+    font-size:15px;
+    cursor:pointer;
+}
+
+
+.customer-home-sidebar nav button:hover,
+.customer-home-sidebar-bottom button:hover{
+    background:#1f2937;
+    color:white;
+}
+
+
+.customer-home-sidebar nav button.active{
+    background:#2563eb;
+    color:white;
+}
+
+
+.customer-home-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+.customer-home-main{
+    width:calc(100% - 245px);
+    min-height:100vh;
+    margin-left:245px;
+    padding:35px;
+}
+
+
+.customer-home-header{
+    margin-bottom:25px;
+}
+
+
+.customer-home-back{
+    border:none;
+    padding:0;
+    background:transparent;
+    color:#2563eb;
+    cursor:pointer;
+    font-weight:600;
+}
+
+
+.customer-home-header h1{
+    margin:10px 0 5px;
+    font-size:30px;
+}
+
+
+.customer-home-header p{
+    margin:0;
+    color:#6b7280;
+}
+
+
+.customer-home-tailor-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:20px;
+    margin-bottom:20px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:white;
+}
+
+
+.customer-home-tailor-card > div:first-child{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+
+.customer-home-tailor-card img,
+.customer-home-avatar{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+}
+
+
+.customer-home-tailor-card img{
+    object-fit:cover;
+}
+
+
+.customer-home-avatar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#dbeafe;
+    color:#2563eb;
+    font-size:20px;
+    font-weight:700;
+}
+
+
+.customer-home-tailor-card h2{
+    margin:0;
+    font-size:17px;
+}
+
+
+.customer-home-tailor-card p{
+    margin:4px 0 0;
+    color:#6b7280;
+    font-size:11px;
+}
+
+
+.customer-home-availability{
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:700;
+    text-transform:capitalize;
+}
+
+
+.customer-home-availability.available{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+
+.customer-home-availability.busy{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+
+.customer-home-availability.unavailable{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+.customer-home-unavailable{
+    margin-bottom:20px;
+    padding:14px;
+    border-radius:9px;
+    background:#fef3c7;
+    color:#b45309;
+    font-size:12px;
+}
+
+
+.customer-home-form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+
+.customer-home-card{
+    padding:22px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:white;
+}
+
+
+.customer-home-card h2{
+    margin:0 0 16px;
+    font-size:17px;
+}
+
+
+/* ==========================
+   ADDRESS LIST
+========================== */
+
+.customer-home-address-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+
+/* ==========================
+   ADDRESS CARD
+========================== */
+
+.customer-home-address{
+    position:relative;
+
+    width:100%;
+    min-height:120px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px 100px;
+
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+
+    background:white;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.customer-home-address:hover{
+    border-color:#93c5fd;
+    background:#f8fbff;
+}
+
+
+.customer-home-address.active{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+
+/* ==========================
+   RADIO LEFT
+========================== */
+
+.customer-home-address-radio{
+    position:absolute;
+
+    left:22px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:16px !important;
+    height:16px !important;
+
+    margin:0;
+    padding:0 !important;
+
+    accent-color:#2563eb;
+
+    cursor:pointer;
+}
+
+
+/* ==========================
+   ADDRESS CENTER
+========================== */
+
+.customer-home-address-info{
+    width:100%;
+    max-width:520px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+
+.customer-home-address-info strong{
+    color:#1f2937;
+    font-size:12px;
+}
+
+
+.customer-home-address-info p{
+    margin:6px 0 0;
+
+    color:#6b7280;
+
+    font-size:11px;
+    line-height:1.6;
+}
+
+
+.customer-home-default-address{
+    margin-top:7px;
+
+    padding:3px 7px;
+
+    border-radius:20px;
+
+    background:#dbeafe;
+    color:#2563eb;
+
+    font-size:8px;
+    font-weight:700;
+}
+
+
+/* ==========================
+   EDIT BUTTON RIGHT
+========================== */
+
+.customer-home-address-edit-btn{
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    padding:8px 13px;
+
+    border:1px solid #bfdbfe;
+    border-radius:7px;
+
+    background:white;
+    color:#2563eb;
+
+    font-size:10px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.customer-home-address-edit-btn:hover{
+    background:#eff6ff;
+    border-color:#2563eb;
+}
+
+
+/* ==========================
+   ADD ADDRESS BUTTON
+========================== */
+
+.customer-home-add-address-btn{
+    display:block;
+
+    margin:14px auto 0;
+
+    padding:8px 13px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#2563eb;
+
+    font-size:11px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.customer-home-add-address-btn:hover{
+    text-decoration:underline;
+}
+
+
+.customer-home-form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px;
+}
+
+
+.customer-home-form-grid > div,
+.customer-home-note{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+
+.customer-home-form label{
+    color:#4b5563;
+    font-size:11px;
+    font-weight:600;
+}
+
+
+.customer-home-form input,
+.customer-home-form textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    outline:none;
+}
+
+
+.customer-home-note{
+    margin-top:15px;
+}
+
+
+.customer-home-submit{
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+
+.customer-home-submit:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+}
+
+
+.customer-home-state{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f5f7fa;
+}
+
+
+.customer-home-state.error{
+    color:#dc2626;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .customer-home-sidebar{
+        display:none;
+    }
+
+    .customer-home-main{
+        width:100%;
+        margin-left:0;
+        padding:20px;
+    }
+
+    .customer-home-tailor-card{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .customer-home-form-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .customer-home-address{
+        min-height:175px;
+
+        padding:
+            55px 15px 55px;
+    }
+
+
+    .customer-home-address-radio{
+        left:50%;
+        top:20px;
+
+        transform:translateX(-50%);
+    }
+
+
+    .customer-home-address-info{
+        max-width:none;
+        text-align:center;
+    }
+
+
+    .customer-home-address-edit-btn{
+        top:auto;
+
+        right:50%;
+        bottom:12px;
+
+        transform:translateX(50%);
+    }
+
+}

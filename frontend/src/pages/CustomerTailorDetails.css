@@ -1,0 +1,1511 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.customer-tailor-details-page{
+    min-height:100vh;
+
+    display:flex;
+
+    background:#f5f7fa;
+
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.customer-tailor-details-sidebar{
+    width:245px;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    z-index:100;
+}
+
+
+.customer-tailor-details-logo{
+    padding-left:10px;
+
+    margin-bottom:40px;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+
+.customer-tailor-details-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.customer-tailor-details-sidebar nav button,
+.customer-tailor-details-sidebar-bottom button{
+    width:100%;
+
+    position:relative;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:13px 15px;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.customer-tailor-details-sidebar nav button:hover,
+.customer-tailor-details-sidebar-bottom button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+.customer-tailor-details-sidebar nav button.active{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.notification-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1;
+}
+
+
+.customer-tailor-details-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.customer-tailor-details-main{
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    margin-left:245px;
+
+    padding:35px;
+}
+
+
+/* ==========================
+   HEADER
+========================== */
+
+.customer-tailor-details-header{
+    margin-bottom:25px;
+}
+
+
+.customer-tailor-back-btn{
+    padding:0;
+
+    border:none;
+
+    background:transparent;
+
+    color:#2563eb;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.customer-tailor-details-header h1{
+    margin:9px 0 0;
+
+    font-size:30px;
+}
+
+
+.customer-tailor-details-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+/* ==========================
+   PROFILE CARD
+========================== */
+
+.customer-tailor-profile-card{
+    padding:25px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.customer-tailor-profile-top{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding-bottom:23px;
+
+    border-bottom:1px solid #f1f5f9;
+}
+
+
+.customer-tailor-profile-identity{
+    display:flex;
+
+    align-items:center;
+
+    gap:17px;
+}
+
+
+.customer-tailor-profile-image,
+.customer-tailor-profile-avatar{
+    width:90px;
+
+    height:90px;
+
+    min-width:90px;
+
+    border-radius:50%;
+}
+
+
+.customer-tailor-profile-image{
+    object-fit:cover;
+}
+
+
+.customer-tailor-profile-avatar{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    font-size:30px;
+
+    font-weight:800;
+}
+
+
+.customer-tailor-profile-identity h2{
+    margin:7px 0 4px;
+
+    font-size:23px;
+}
+
+
+.customer-tailor-profile-identity p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+.customer-tailor-approved-badge{
+    display:inline-flex;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:9px;
+
+    font-weight:700;
+}
+
+
+/* ==========================
+   PROFILE RATING
+========================== */
+
+.customer-tailor-profile-rating{
+    margin-top:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+
+.customer-tailor-profile-rating strong{
+    color:#d97706;
+
+    font-size:13px;
+}
+
+
+.customer-tailor-profile-rating span{
+    color:#6b7280;
+
+    font-size:10px;
+}
+
+
+.customer-tailor-message-main-btn{
+    border:none;
+
+    border-radius:8px;
+
+    padding:11px 17px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.customer-tailor-message-main-btn:hover{
+    background:#1d4ed8;
+}
+
+
+/* ==========================
+   PROFILE INFORMATION
+========================== */
+
+.customer-tailor-profile-info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:12px;
+
+    padding-top:22px;
+}
+
+
+.customer-tailor-profile-info-grid > div{
+    padding:13px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    border-radius:9px;
+
+    background:#f9fafb;
+}
+
+
+.customer-tailor-profile-info-grid span{
+    color:#6b7280;
+
+    font-size:9px;
+}
+
+
+.customer-tailor-profile-info-grid strong{
+    font-size:12px;
+
+    word-break:break-word;
+}
+
+
+.customer-tailor-rating-text{
+    color:#d97706;
+}
+
+
+.customer-tailor-verification-text{
+    color:#15803d;
+
+    text-transform:capitalize;
+}
+
+
+/* ==========================
+   DETAILS GRID
+========================== */
+
+.customer-tailor-details-grid{
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.5fr)
+        minmax(300px,0.5fr);
+
+    gap:20px;
+
+    margin-top:20px;
+}
+
+
+.customer-tailor-about-card,
+.customer-tailor-contact-card{
+    padding:22px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:13px;
+
+    background:white;
+}
+
+
+.customer-tailor-about-card h2,
+.customer-tailor-contact-card h2{
+    margin:0 0 12px;
+
+    font-size:18px;
+}
+
+
+.customer-tailor-about-card > p,
+.customer-tailor-contact-card > p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+
+/* ==========================
+   SPECIALIZATION
+========================== */
+
+.customer-tailor-detail-specialization{
+    margin-top:20px;
+}
+
+
+.customer-tailor-detail-specialization > span{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#6b7280;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+
+.customer-tailor-detail-specialization > div{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+}
+
+
+.customer-tailor-detail-specialization > div > span{
+    padding:6px 9px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:10px;
+}
+
+
+.customer-tailor-detail-specialization small{
+    color:#9ca3af;
+
+    font-size:10px;
+}
+
+
+/* ==========================
+   CONTACT
+========================== */
+
+.customer-tailor-contact-card{
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+.customer-tailor-contact-card button{
+    width:100%;
+
+    margin-top:auto;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+/* ==========================
+   PORTFOLIO
+========================== */
+
+.customer-tailor-portfolio-card{
+    margin-top:20px;
+
+    padding:23px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.03);
+}
+
+
+.customer-tailor-portfolio-heading{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:18px;
+}
+
+
+.customer-tailor-portfolio-heading h2{
+    margin:0;
+
+    font-size:19px;
+}
+
+
+.customer-tailor-portfolio-heading p{
+    margin:5px 0 0;
+
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+.customer-tailor-portfolio-heading > span{
+    padding:7px 10px;
+
+    border-radius:20px;
+
+    background:#f3f4f6;
+
+    color:#6b7280;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+
+/* ==========================
+   MAIN PORTFOLIO IMAGE
+========================== */
+
+.customer-tailor-portfolio-main{
+    position:relative;
+
+    width:100%;
+
+    height:430px;
+
+    overflow:hidden;
+
+    border-radius:11px;
+
+    background:#e5e7eb;
+}
+
+
+.customer-tailor-portfolio-main img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+.customer-tailor-portfolio-main > span{
+    position:absolute;
+
+    right:12px;
+
+    bottom:12px;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:rgba(17,24,39,0.8);
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:700;
+}
+
+
+/* ==========================
+   PORTFOLIO THUMBNAILS
+========================== */
+
+.customer-tailor-portfolio-thumbnails{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:10px;
+
+    overflow-x:auto;
+}
+
+
+.customer-tailor-portfolio-thumbnails button{
+    width:75px;
+
+    min-width:75px;
+
+    height:60px;
+
+    padding:0;
+
+    overflow:hidden;
+
+    border:2px solid transparent;
+
+    border-radius:7px;
+
+    background:#e5e7eb;
+
+    cursor:pointer;
+}
+
+
+.customer-tailor-portfolio-thumbnails button.active{
+    border-color:#2563eb;
+}
+
+
+.customer-tailor-portfolio-thumbnails img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+/* ==========================
+   EMPTY PORTFOLIO
+========================== */
+
+.customer-tailor-no-portfolio{
+    padding:45px;
+
+    border-radius:10px;
+
+    background:#f9fafb;
+
+    text-align:center;
+}
+
+
+.customer-tailor-no-portfolio h3{
+    margin:0 0 7px;
+
+    font-size:15px;
+}
+
+
+.customer-tailor-no-portfolio p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+/* ==========================
+   REVIEWS
+========================== */
+
+.customer-tailor-reviews-card{
+    margin-top:20px;
+
+    padding:23px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.03);
+}
+
+
+.customer-tailor-reviews-heading{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:20px;
+}
+
+
+.customer-tailor-reviews-heading h2{
+    margin:0;
+
+    font-size:19px;
+}
+
+
+.customer-tailor-reviews-heading p{
+    margin:5px 0 0;
+
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+.customer-tailor-rating-summary{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:3px;
+}
+
+
+.customer-tailor-rating-summary strong{
+    color:#d97706;
+
+    font-size:20px;
+}
+
+
+.customer-tailor-rating-summary span{
+    color:#6b7280;
+
+    font-size:10px;
+}
+
+
+/* ==========================
+   REVIEW LIST
+========================== */
+
+.customer-tailor-reviews-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+
+.customer-tailor-review-item{
+    padding:16px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    background:#f9fafb;
+
+    transition:0.2s;
+}
+
+
+.customer-tailor-review-item:hover{
+    border-color:#dbeafe;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.04);
+}
+
+
+.customer-tailor-review-top{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+
+/* ==========================
+   REVIEW CUSTOMER
+========================== */
+
+.customer-tailor-review-user{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+.customer-tailor-review-avatar{
+    width:38px;
+
+    height:38px;
+
+    min-width:38px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+
+.customer-tailor-review-user > div:last-child{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+}
+
+
+.customer-tailor-review-user strong{
+    font-size:11px;
+}
+
+
+.customer-tailor-review-user span{
+    color:#9ca3af;
+
+    font-size:8px;
+}
+
+
+/* ==========================
+   REVIEW RATING
+========================== */
+
+.customer-tailor-review-rating{
+    display:flex;
+
+    align-items:center;
+
+    gap:1px;
+
+    white-space:nowrap;
+}
+
+
+.customer-review-stars-filled{
+    color:#f59e0b;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+}
+
+
+.customer-review-stars-empty{
+    color:#d1d5db;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+}
+
+
+.customer-tailor-review-rating small{
+    margin-left:6px;
+
+    color:#6b7280;
+
+    font-size:9px;
+
+    font-weight:600;
+}
+
+
+.customer-tailor-review-item > p{
+    margin:12px 0 0;
+
+    color:#4b5563;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+    word-break:break-word;
+}
+
+
+/* ==========================
+   NO REVIEWS
+========================== */
+
+.customer-tailor-no-reviews{
+    padding:40px;
+
+    border-radius:10px;
+
+    background:#f9fafb;
+
+    text-align:center;
+}
+
+
+.customer-tailor-no-reviews h3{
+    margin:0 0 7px;
+
+    font-size:14px;
+}
+
+
+.customer-tailor-no-reviews p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:10px;
+}
+
+
+/* ==========================
+   STATE
+========================== */
+
+.customer-tailor-details-state{
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#f5f7fa;
+}
+
+
+.customer-tailor-details-state.error{
+    color:#dc2626;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1000px){
+
+    .customer-tailor-details-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .customer-tailor-profile-info-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .customer-tailor-details-sidebar{
+        display:none;
+    }
+
+
+    .customer-tailor-details-main{
+        width:100%;
+
+        margin-left:0;
+
+        padding:20px;
+    }
+
+
+    .customer-tailor-profile-top{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .customer-tailor-profile-identity{
+        align-items:flex-start;
+    }
+
+
+    .customer-tailor-message-main-btn{
+        width:100%;
+    }
+
+
+    .customer-tailor-profile-info-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .customer-tailor-portfolio-main{
+        height:300px;
+    }
+
+
+    .customer-tailor-portfolio-heading{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .customer-tailor-reviews-heading{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .customer-tailor-rating-summary{
+        align-items:flex-start;
+    }
+
+
+    .customer-tailor-review-top{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+}
+
+/* ==========================================
+   HOME MEASUREMENT + AVAILABILITY
+========================================== */
+
+
+/* ==========================
+   BADGE ROW
+========================== */
+
+.customer-tailor-badge-row{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+
+/* ==========================
+   AVAILABILITY BADGE
+========================== */
+
+.customer-tailor-availability-badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+
+/* AVAILABLE */
+
+.customer-tailor-availability-badge.available{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+
+/* BUSY */
+
+.customer-tailor-availability-badge.busy{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+
+/* UNAVAILABLE */
+
+.customer-tailor-availability-badge.unavailable{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+
+/* ==========================
+   PROFILE ACTION BUTTONS
+========================== */
+
+.customer-tailor-main-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    flex-wrap:wrap;
+}
+
+
+/* MESSAGE BUTTON */
+
+.customer-tailor-main-actions
+.customer-tailor-message-main-btn{
+    white-space:nowrap;
+}
+
+
+
+/* ==========================
+   HOME MEASUREMENT BUTTON
+========================== */
+
+.customer-tailor-home-main-btn{
+    border:none;
+
+    border-radius:8px;
+
+    padding:11px 17px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    transition:0.2s;
+}
+
+
+.customer-tailor-home-main-btn:hover{
+    background:#15803d;
+}
+
+
+.customer-tailor-home-main-btn.disabled,
+.customer-tailor-home-main-btn:disabled{
+    background:#d1d5db;
+
+    color:#6b7280;
+
+    cursor:not-allowed;
+}
+
+
+.customer-tailor-home-main-btn:disabled:hover{
+    background:#d1d5db;
+}
+
+
+
+/* ==========================
+   INFORMATION GRID
+   AVAILABILITY TEXT
+========================== */
+
+.customer-tailor-availability-text{
+    width:max-content;
+
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    font-size:10px !important;
+
+    font-weight:700;
+}
+
+
+.customer-tailor-availability-text.available{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+
+.customer-tailor-availability-text.busy{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+
+.customer-tailor-availability-text.unavailable{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+
+/* ==========================
+   HOME MEASUREMENT CARD
+========================== */
+
+.customer-tailor-home-card{
+    margin-top:20px;
+
+    padding:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.03);
+}
+
+
+/* AVAILABLE */
+
+.customer-tailor-home-card.available{
+    border-left:4px solid #16a34a;
+}
+
+
+/* BUSY */
+
+.customer-tailor-home-card.busy{
+    border-left:4px solid #d97706;
+}
+
+
+/* UNAVAILABLE */
+
+.customer-tailor-home-card.unavailable{
+    border-left:4px solid #dc2626;
+}
+
+
+
+/* ==========================
+   HOME CARD TEXT
+========================== */
+
+.customer-tailor-home-label{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#6b7280;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+
+.customer-tailor-home-card h2{
+    margin:0 0 6px;
+
+    font-size:18px;
+}
+
+
+.customer-tailor-home-card p{
+    max-width:650px;
+
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+
+
+/* ==========================
+   HOME CARD BUTTON
+========================== */
+
+.customer-tailor-home-card > button{
+    min-width:190px;
+
+    padding:11px 16px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    transition:0.2s;
+}
+
+
+.customer-tailor-home-card > button:hover{
+    background:#15803d;
+}
+
+
+.customer-tailor-home-card > button:disabled{
+    background:#d1d5db;
+
+    color:#6b7280;
+
+    cursor:not-allowed;
+}
+
+
+.customer-tailor-home-card > button:disabled:hover{
+    background:#d1d5db;
+}
+
+
+
+/* ==========================
+   REVIEW PROFILE IMAGE
+========================== */
+
+.customer-tailor-review-avatar-image{
+    width:38px;
+
+    height:38px;
+
+    min-width:38px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:1px solid #e5e7eb;
+}
+
+
+
+/* ==========================
+   TABLET
+========================== */
+
+@media(max-width:1000px){
+
+    .customer-tailor-main-actions{
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+
+    .customer-tailor-main-actions button{
+        width:100%;
+    }
+
+}
+
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    .customer-tailor-main-actions{
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+
+    .customer-tailor-main-actions button{
+        width:100%;
+    }
+
+
+    .customer-tailor-home-card{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+
+    .customer-tailor-home-card > button{
+        width:100%;
+
+        min-width:0;
+    }
+
+
+    .customer-tailor-badge-row{
+        align-items:flex-start;
+    }
+
+}

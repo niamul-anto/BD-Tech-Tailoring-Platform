@@ -1,0 +1,428 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.admin-payments-page{
+    min-height:100vh;
+    display:flex;
+    background:#f5f7fa;
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.admin-payments-sidebar{
+    width:245px;
+    min-height:100vh;
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+}
+
+
+.admin-payments-logo{
+    font-size:22px;
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    padding-left:10px;
+}
+
+
+.admin-payments-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.admin-payments-sidebar button{
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px 15px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.admin-payments-sidebar button:hover{
+    background:#1f2937;
+    color:white;
+}
+
+
+.admin-payments-sidebar button.active{
+    background:#2563eb;
+    color:white;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.admin-payments-main{
+    margin-left:245px;
+
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    padding:35px;
+}
+
+
+.admin-payments-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:28px;
+}
+
+
+.admin-payments-header h1{
+    margin:0;
+
+    font-size:30px;
+}
+
+
+.admin-payments-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+}
+
+
+.payments-count{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    color:#6b7280;
+
+    font-size:14px;
+}
+
+
+/* ==========================
+   TABLE
+========================== */
+
+.payments-table-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.payments-table-wrapper{
+    overflow-x:auto;
+}
+
+
+.payments-table{
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+
+.payments-table th{
+    padding:15px 18px;
+
+    text-align:left;
+
+    background:#f9fafb;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    white-space:nowrap;
+}
+
+
+.payments-table td{
+    padding:17px 18px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    font-size:13px;
+
+    white-space:nowrap;
+}
+
+
+.payments-table tbody tr:hover{
+    background:#fafafa;
+}
+
+
+/* ==========================
+   CUSTOMER
+========================== */
+
+.payment-customer{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+.payment-avatar{
+    width:38px;
+    height:38px;
+
+    min-width:38px;
+
+    border-radius:50%;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+}
+
+
+.payment-customer > div:last-child{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+}
+
+
+.payment-customer span{
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+/* ==========================
+   ORDER
+========================== */
+
+.payment-order-cell{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+
+.payment-order-cell span{
+    color:#6b7280;
+
+    font-size:11px;
+
+    text-transform:capitalize;
+}
+
+
+/* ==========================
+   METHOD
+========================== */
+
+.payment-method{
+    display:inline-block;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:#fce7f3;
+
+    color:#be185d;
+
+    font-weight:600;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+}
+
+
+/* ==========================
+   AMOUNT
+========================== */
+
+.payment-amount{
+    color:#15803d;
+}
+
+
+/* ==========================
+   STATUS
+========================== */
+
+.transaction-status,
+.order-payment-status{
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:capitalize;
+}
+
+
+.transaction-status.initiated{
+    background:#fef3c7;
+
+    color:#b45309;
+}
+
+
+.transaction-status.paid{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.transaction-status.failed{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.order-payment-status.paid{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.order-payment-status.unpaid{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+/* ==========================
+   STATES
+========================== */
+
+.payments-state{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:30px;
+
+    text-align:center;
+}
+
+
+.payments-state.error{
+    color:#dc2626;
+}
+
+
+.no-payments{
+    text-align:center;
+
+    padding:35px !important;
+
+    color:#6b7280;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .admin-payments-sidebar{
+        display:none;
+    }
+
+
+    .admin-payments-main{
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+    }
+
+
+    .admin-payments-header{
+        align-items:flex-start;
+
+        gap:15px;
+    }
+
+
+    .admin-payments-header h1{
+        font-size:25px;
+    }
+
+}

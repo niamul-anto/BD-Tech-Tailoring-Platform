@@ -1,0 +1,1094 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.tailor-profile-page{
+    min-height:100vh;
+    display:flex;
+    background:#f5f7fa;
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.tailor-profile-sidebar{
+    width:245px;
+    min-height:100vh;
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+
+    z-index:100;
+}
+
+
+.tailor-profile-logo{
+    font-size:22px;
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    padding-left:10px;
+}
+
+
+.tailor-profile-sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+
+.tailor-profile-sidebar nav button,
+.tailor-profile-sidebar-bottom button{
+    width:100%;
+
+    position:relative;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px 15px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.tailor-profile-sidebar nav button:hover,
+.tailor-profile-sidebar-bottom button:hover{
+    background:#1f2937;
+    color:white;
+}
+
+
+.tailor-profile-sidebar nav button.active{
+    background:#2563eb;
+    color:white;
+}
+
+
+/* ==========================
+   NOTIFICATION BADGE
+========================== */
+
+.notification-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1;
+}
+
+
+.tailor-profile-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.tailor-profile-main{
+    margin-left:245px;
+
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    padding:35px;
+}
+
+
+.tailor-profile-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+
+    margin-bottom:28px;
+}
+
+
+.tailor-profile-header h1{
+    margin:0;
+    font-size:30px;
+}
+
+
+.tailor-profile-header p{
+    margin:7px 0 0;
+    color:#6b7280;
+}
+
+
+/* ==========================
+   ERROR
+========================== */
+
+.tailor-profile-error{
+    padding:15px 18px;
+
+    margin-bottom:20px;
+
+    border-radius:8px;
+
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+/* ==========================
+   CREATE / EDIT PROFILE CARD
+========================== */
+
+.create-profile-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:28px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.create-profile-heading{
+    margin-bottom:25px;
+}
+
+
+.create-profile-heading h2{
+    margin:0;
+    font-size:22px;
+}
+
+
+.create-profile-heading p{
+    color:#6b7280;
+    margin:7px 0 0;
+}
+
+
+.tailor-profile-form{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:20px;
+}
+
+
+.profile-form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+
+.profile-form-group.full{
+    grid-column:1/-1;
+}
+
+
+.profile-form-group label{
+    font-size:13px;
+    font-weight:600;
+}
+
+
+.profile-form-group input,
+.profile-form-group textarea{
+    width:100%;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    padding:12px 13px;
+
+    font-size:14px;
+
+    outline:none;
+
+    background:white;
+}
+
+
+.profile-form-group input:focus,
+.profile-form-group textarea:focus{
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,0.08);
+}
+
+
+.profile-form-group textarea{
+    resize:vertical;
+}
+
+
+.profile-form-group small{
+    color:#9ca3af;
+    font-size:11px;
+}
+
+
+.profile-form-actions{
+    grid-column:1/-1;
+}
+
+
+.profile-form-actions button{
+    border:none;
+
+    background:#2563eb;
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+
+.profile-form-actions button:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+}
+
+
+/* ==========================
+   EDIT PROFILE BUTTON
+========================== */
+
+.edit-profile-btn{
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.edit-profile-btn:hover{
+    background:#1d4ed8;
+}
+
+
+.edit-profile-card{
+    margin-bottom:24px;
+}
+
+
+.profile-edit-actions{
+    grid-column:1/-1;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+}
+
+
+.cancel-edit-btn,
+.save-edit-btn{
+    border:none;
+
+    padding:11px 18px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.cancel-edit-btn{
+    background:#f3f4f6;
+
+    color:#374151;
+}
+
+
+.cancel-edit-btn:hover{
+    background:#e5e7eb;
+}
+
+
+.save-edit-btn{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.save-edit-btn:hover{
+    background:#1d4ed8;
+}
+
+
+.cancel-edit-btn:disabled,
+.save-edit-btn:disabled{
+    opacity:0.6;
+
+    cursor:not-allowed;
+}
+
+
+/* ==========================
+   VERIFICATION
+========================== */
+
+.tailor-verification-panel{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:20px 22px;
+
+    margin-bottom:24px;
+}
+
+
+.tailor-verification-panel.approved{
+    border-left:4px solid #16a34a;
+}
+
+
+.tailor-verification-panel.pending{
+    border-left:4px solid #d97706;
+}
+
+
+.tailor-verification-panel.rejected{
+    border-left:4px solid #dc2626;
+}
+
+
+.tailor-verification-panel span{
+    color:#6b7280;
+    font-size:12px;
+}
+
+
+.tailor-verification-panel h3{
+    margin:5px 0 0;
+}
+
+
+.tailor-verification-status{
+    padding:6px 11px;
+
+    border-radius:20px;
+
+    font-size:11px;
+    font-weight:700;
+
+    text-transform:capitalize;
+}
+
+
+.tailor-verification-status.approved{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+
+.tailor-verification-status.pending{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+
+.tailor-verification-status.rejected{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+/* ==========================
+   HOME MEASUREMENT AVAILABILITY
+========================== */
+
+.tailor-availability-panel{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    padding:20px 22px;
+
+    margin-bottom:24px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.03);
+
+    transition:0.2s;
+}
+
+
+.tailor-availability-panel.available{
+    border-left:4px solid #16a34a;
+}
+
+
+.tailor-availability-panel.busy{
+    border-left:4px solid #d97706;
+}
+
+
+.tailor-availability-panel.unavailable{
+    border-left:4px solid #dc2626;
+}
+
+
+.tailor-availability-info{
+    min-width:0;
+}
+
+
+.tailor-availability-info > span{
+    color:#6b7280;
+
+    font-size:12px;
+}
+
+
+.tailor-availability-info h3{
+    margin:5px 0 4px;
+
+    font-size:17px;
+}
+
+
+.tailor-availability-info p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+
+.tailor-availability-control{
+    min-width:180px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+
+.tailor-availability-control label{
+    color:#6b7280;
+
+    font-size:11px;
+
+    font-weight:600;
+}
+
+
+.tailor-availability-control select{
+    width:100%;
+
+    padding:10px 12px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    background:white;
+
+    color:#1f2937;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.tailor-availability-control select:focus{
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,0.08);
+}
+
+
+.tailor-availability-control select:disabled{
+    opacity:0.6;
+
+    cursor:not-allowed;
+}
+
+
+.tailor-availability-control small{
+    color:#6b7280;
+
+    font-size:10px;
+}
+
+
+/* ==========================
+   PROFILE CONTENT
+========================== */
+
+.tailor-profile-content-grid{
+    display:grid;
+
+    grid-template-columns:
+        320px 1fr;
+
+    gap:22px;
+}
+
+
+.tailor-public-profile-card,
+.tailor-profile-details-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:24px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+/* ==========================
+   PROFILE IMAGE
+========================== */
+
+.tailor-profile-image-box{
+    width:130px;
+    height:130px;
+
+    margin:0 auto 16px;
+}
+
+
+.tailor-profile-image-box img,
+.tailor-profile-placeholder{
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+}
+
+
+.tailor-profile-placeholder{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#dbeafe;
+    color:#2563eb;
+
+    font-size:42px;
+    font-weight:700;
+}
+
+
+.profile-upload-btn{
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    background:#eff6ff;
+    color:#2563eb;
+
+    padding:9px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}
+
+
+.profile-upload-btn input{
+    display:none;
+}
+
+
+.tailor-public-profile-card h2{
+    text-align:center;
+    margin:0;
+}
+
+
+.tailor-owner-name{
+    text-align:center;
+
+    color:#6b7280;
+
+    margin:6px 0 20px;
+}
+
+
+.profile-detail-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:11px 0;
+
+    border-bottom:1px solid #f1f5f9;
+
+    font-size:13px;
+}
+
+
+.profile-detail-row span{
+    color:#6b7280;
+}
+
+
+/* ==========================
+   PROFILE AVAILABILITY TEXT
+========================== */
+
+.tailor-profile-availability-text{
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+
+.tailor-profile-availability-text.available{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.tailor-profile-availability-text.busy{
+    background:#fef3c7;
+
+    color:#b45309;
+}
+
+
+.tailor-profile-availability-text.unavailable{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+/* ==========================
+   PROFILE DETAILS
+========================== */
+
+.tailor-profile-details-card h2{
+    margin-top:0;
+}
+
+
+.profile-info-block{
+    padding:14px 0;
+
+    border-bottom:1px solid #f1f5f9;
+}
+
+
+.profile-info-block > span{
+    display:block;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    margin-bottom:7px;
+}
+
+
+.profile-info-block strong{
+    font-size:14px;
+}
+
+
+.profile-info-block p{
+    margin:0;
+
+    color:#374151;
+
+    line-height:1.6;
+
+    font-size:14px;
+}
+
+
+.profile-specialization{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+}
+
+
+.profile-specialization span{
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+    color:#2563eb;
+
+    font-size:11px;
+}
+
+
+/* ==========================
+   PORTFOLIO
+========================== */
+
+.tailor-portfolio-card{
+    margin-top:22px;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:24px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.tailor-portfolio-heading{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:20px;
+}
+
+
+.tailor-portfolio-heading h2{
+    margin:0;
+}
+
+
+.tailor-portfolio-heading p{
+    margin:5px 0 0;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+.portfolio-upload-btn{
+    background:#2563eb;
+
+    color:white;
+
+    padding:10px 14px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.portfolio-upload-btn input{
+    display:none;
+}
+
+
+.portfolio-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:15px;
+}
+
+
+.portfolio-image-card{
+    height:170px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    background:#e5e7eb;
+}
+
+
+.portfolio-image-card img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+.portfolio-empty{
+    grid-column:1/-1;
+
+    padding:35px;
+
+    text-align:center;
+
+    background:#f9fafb;
+
+    color:#9ca3af;
+
+    border-radius:10px;
+}
+
+
+/* ==========================
+   STATE
+========================== */
+
+.tailor-profile-state{
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#f5f7fa;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1000px){
+
+    .tailor-profile-content-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .portfolio-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+
+    .tailor-availability-panel{
+        align-items:flex-start;
+    }
+
+
+    .tailor-availability-control{
+        min-width:160px;
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .tailor-profile-sidebar{
+        display:none;
+    }
+
+
+    .tailor-profile-main{
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+    }
+
+
+    .tailor-profile-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+
+    .tailor-profile-form{
+        grid-template-columns:1fr;
+    }
+
+
+    .profile-form-group.full,
+    .profile-form-actions,
+    .profile-edit-actions{
+        grid-column:auto;
+    }
+
+
+    .profile-edit-actions{
+        width:100%;
+    }
+
+
+    .cancel-edit-btn,
+    .save-edit-btn{
+        flex:1;
+    }
+
+
+    .tailor-availability-panel{
+        align-items:stretch;
+
+        flex-direction:column;
+    }
+
+
+    .tailor-availability-control{
+        width:100%;
+
+        min-width:0;
+    }
+
+
+    .tailor-portfolio-heading{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .portfolio-grid{
+        grid-template-columns:1fr;
+    }
+
+}

@@ -1,0 +1,591 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.admin-tailors-page{
+    min-height:100vh;
+    display:flex;
+    background:#f5f7fa;
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.admin-tailors-sidebar{
+    width:245px;
+    min-height:100vh;
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+.admin-tailors-logo{
+    font-size:22px;
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    padding-left:10px;
+}
+
+
+.admin-tailors-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.admin-tailors-sidebar button{
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px 15px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.admin-tailors-sidebar button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+.admin-tailors-sidebar button.active{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.admin-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+.admin-sidebar-bottom button{
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px 15px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.admin-sidebar-bottom button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.admin-tailors-main{
+    margin-left:245px;
+
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    padding:35px;
+}
+
+
+.admin-tailors-header{
+    margin-bottom:28px;
+}
+
+
+.admin-tailors-header h1{
+    margin:0;
+
+    font-size:30px;
+}
+
+
+.admin-tailors-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+}
+
+
+/* ==========================
+   SUMMARY
+========================== */
+
+.tailor-summary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 250px));
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+
+.tailor-summary-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:22px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.tailor-summary-card span{
+    color:#6b7280;
+
+    font-size:14px;
+}
+
+
+.tailor-summary-card h2{
+    margin:10px 0 0;
+
+    font-size:30px;
+}
+
+
+.tailor-summary-card.pending h2{
+    color:#d97706;
+}
+
+
+/* ==========================
+   TABLE CARD
+========================== */
+
+.tailor-table-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.second-card{
+    margin-top:25px;
+}
+
+
+.tailor-table-heading{
+    padding:22px 24px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+
+.tailor-table-heading h2{
+    margin:0;
+
+    font-size:19px;
+}
+
+
+.tailor-table-heading p{
+    margin:5px 0 0;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+.tailor-table-heading > span{
+    color:#6b7280;
+
+    font-size:14px;
+}
+
+
+.tailor-table-wrapper{
+    overflow-x:auto;
+}
+
+
+.tailor-table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:fixed;
+}
+
+
+.tailor-table th{
+    text-align:left;
+
+    padding:15px 18px;
+
+    background:#f9fafb;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    vertical-align:middle;
+}
+
+
+.tailor-table td{
+    padding:17px 18px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    font-size:14px;
+
+    vertical-align:middle;
+
+    text-align:left;
+}
+
+
+.tailor-table tbody tr:hover{
+    background:#fafafa;
+}
+
+
+/* ==========================
+   REGISTERED TAILOR TABLE
+   COLUMN WIDTH FIX
+========================== */
+
+.second-card .tailor-table th:nth-child(1),
+.second-card .tailor-table td:nth-child(1){
+    width:28%;
+}
+
+
+.second-card .tailor-table th:nth-child(2),
+.second-card .tailor-table td:nth-child(2){
+    width:30%;
+}
+
+
+.second-card .tailor-table th:nth-child(3),
+.second-card .tailor-table td:nth-child(3){
+    width:22%;
+}
+
+
+.second-card .tailor-table th:nth-child(4),
+.second-card .tailor-table td:nth-child(4){
+    width:20%;
+}
+
+
+.second-card .tailor-table td:nth-child(2),
+.second-card .tailor-table td:nth-child(3){
+    color:#374151;
+}
+
+
+/* ==========================
+   USER
+========================== */
+
+.tailor-user-cell{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+.tailor-user-cell > div:last-child{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+}
+
+
+.tailor-user-cell span{
+    color:#6b7280;
+
+    font-size:12px;
+}
+
+
+.tailor-user-cell strong{
+    white-space:nowrap;
+}
+
+
+.tailor-avatar{
+    min-width:38px;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+}
+
+
+/* ==========================
+   SPECIALIZATION
+========================== */
+
+.specialization-list{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:5px;
+}
+
+
+.specialization-list span{
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:11px;
+}
+
+
+/* ==========================
+   ACTIONS
+========================== */
+
+.tailor-actions{
+    display:flex;
+
+    gap:8px;
+}
+
+
+.approve-btn,
+.reject-btn{
+    border:none;
+
+    padding:8px 12px;
+
+    border-radius:7px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.approve-btn{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.reject-btn{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.approve-btn:disabled,
+.reject-btn:disabled{
+    opacity:0.6;
+
+    cursor:not-allowed;
+}
+
+
+/* ==========================
+   ACCOUNT STATUS
+========================== */
+
+.account-status{
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:70px;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+.account-status.active{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.account-status.blocked{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+/* ==========================
+   STATES
+========================== */
+
+.tailor-state{
+    padding:30px;
+
+    text-align:center;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+}
+
+
+.tailor-state.error{
+    color:#dc2626;
+}
+
+
+.no-tailors{
+    text-align:center;
+
+    color:#6b7280;
+
+    padding:30px !important;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .admin-tailors-sidebar{
+        display:none;
+    }
+
+
+    .admin-tailors-main{
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+    }
+
+
+    .tailor-summary-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .admin-tailors-header h1{
+        font-size:25px;
+    }
+
+
+    .tailor-table{
+        table-layout:auto;
+        min-width:750px;
+    }
+
+}

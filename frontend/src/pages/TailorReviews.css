@@ -1,0 +1,602 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.tailor-reviews-page{
+    min-height:100vh;
+
+    display:flex;
+
+    background:#f5f7fa;
+
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.tailor-reviews-sidebar{
+    width:245px;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    z-index:100;
+}
+
+
+.tailor-reviews-logo{
+    padding-left:10px;
+
+    margin-bottom:40px;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+
+.tailor-reviews-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.tailor-reviews-sidebar nav button,
+.tailor-reviews-sidebar-bottom button{
+    width:100%;
+
+    position:relative;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:13px 15px;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.tailor-reviews-sidebar nav button:hover,
+.tailor-reviews-sidebar-bottom button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+.tailor-reviews-sidebar nav button.active{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.tailor-reviews-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+/* ==========================
+   MESSAGE BADGE
+========================== */
+
+.message-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1;
+}
+
+
+/* ==========================
+   NOTIFICATION BADGE
+========================== */
+
+.notification-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.tailor-reviews-main{
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    margin-left:245px;
+
+    padding:35px;
+}
+
+
+/* ==========================
+   HEADER
+========================== */
+
+.tailor-reviews-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+
+.tailor-reviews-header h1{
+    margin:0;
+
+    font-size:30px;
+}
+
+
+.tailor-reviews-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+}
+
+
+.tailor-reviews-count{
+    padding:10px 14px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:8px;
+
+    background:white;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+/* ==========================
+   ERROR / STATE
+========================== */
+
+.tailor-reviews-error{
+    margin-bottom:20px;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.tailor-reviews-state{
+    padding:40px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    text-align:center;
+}
+
+
+/* ==========================
+   SUMMARY
+========================== */
+
+.tailor-review-summary{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+
+.tailor-review-summary-card{
+    padding:22px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.tailor-review-summary-card > span{
+    color:#6b7280;
+
+    font-size:12px;
+}
+
+
+.tailor-average-rating{
+    display:flex;
+
+    align-items:baseline;
+
+    gap:5px;
+
+    margin:8px 0;
+}
+
+
+.tailor-average-rating strong{
+    font-size:32px;
+}
+
+
+.tailor-average-rating span{
+    color:#9ca3af;
+
+    font-size:13px;
+}
+
+
+.tailor-total-review-number{
+    display:block;
+
+    margin-top:8px;
+
+    font-size:32px;
+
+    color:#2563eb;
+}
+
+
+.tailor-review-summary-card p{
+    margin:6px 0 0;
+
+    color:#9ca3af;
+
+    font-size:11px;
+}
+
+
+/* ==========================
+   STARS
+========================== */
+
+.tailor-review-stars{
+    display:flex;
+
+    gap:2px;
+}
+
+
+.tailor-review-stars span{
+    color:#d1d5db;
+
+    font-size:17px;
+}
+
+
+.tailor-review-stars span.filled{
+    color:#f59e0b;
+}
+
+
+/* ==========================
+   REVIEW LIST
+========================== */
+
+.tailor-review-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+
+.tailor-review-card{
+    padding:20px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.03);
+}
+
+
+.tailor-review-card-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+
+.tailor-review-customer{
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+}
+
+
+.tailor-review-avatar{
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-weight:700;
+}
+
+
+/* ==========================
+   CUSTOMER PROFILE IMAGE
+========================== */
+
+.tailor-review-avatar-image{
+    width:42px;
+
+    height:42px;
+
+    min-width:42px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:1px solid #e5e7eb;
+}
+
+
+.tailor-review-customer > div:last-child{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+
+.tailor-review-customer strong{
+    font-size:13px;
+}
+
+
+.tailor-review-customer span{
+    color:#9ca3af;
+
+    font-size:9px;
+}
+
+
+.tailor-review-rating-area{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+
+.tailor-review-rating-area strong{
+    font-size:12px;
+
+    color:#374151;
+}
+
+
+/* ==========================
+   COMMENT
+========================== */
+
+.tailor-review-comment{
+    margin-top:15px;
+
+    padding:14px;
+
+    border-radius:9px;
+
+    background:#f9fafb;
+}
+
+
+.tailor-review-comment p{
+    margin:0;
+
+    color:#4b5563;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+
+/* ==========================
+   EMPTY
+========================== */
+
+.tailor-no-reviews{
+    padding:50px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    text-align:center;
+}
+
+
+.tailor-no-reviews h3{
+    margin:0 0 7px;
+}
+
+
+.tailor-no-reviews p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:12px;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .tailor-reviews-sidebar{
+        display:none;
+    }
+
+
+    .tailor-reviews-main{
+        width:100%;
+
+        margin-left:0;
+
+        padding:20px;
+    }
+
+
+    .tailor-reviews-header{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .tailor-review-summary{
+        grid-template-columns:1fr;
+    }
+
+
+    .tailor-review-card-top{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+}

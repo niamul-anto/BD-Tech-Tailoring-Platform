@@ -1,0 +1,382 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.tailor-measurement-page{
+    min-height:100vh;
+
+    display:flex;
+
+    background:#f5f7fa;
+
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.tailor-measurement-sidebar{
+    width:245px;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+.tailor-measurement-logo{
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    padding-left:10px;
+}
+
+
+.tailor-measurement-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.tailor-measurement-sidebar nav button,
+.tailor-measurement-sidebar-bottom button{
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px 15px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.tailor-measurement-sidebar nav button:hover,
+.tailor-measurement-sidebar-bottom button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+.tailor-measurement-sidebar nav button.active{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.tailor-measurement-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.tailor-measurement-main{
+    margin-left:245px;
+
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    padding:35px;
+}
+
+
+.tailor-measurement-header{
+    margin-bottom:28px;
+}
+
+
+.tailor-measurement-header h1{
+    margin:0;
+
+    font-size:30px;
+}
+
+
+.tailor-measurement-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+}
+
+
+/* ==========================
+   STATE
+========================== */
+
+.measurement-state,
+.measurement-error{
+    padding:30px;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    text-align:center;
+}
+
+
+.measurement-error{
+    color:#dc2626;
+}
+
+
+/* ==========================
+   COMING SOON CARD
+========================== */
+
+.measurement-coming-card{
+    max-width:900px;
+
+    margin:40px auto 0;
+
+    padding:40px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    background:white;
+
+    text-align:center;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.05);
+}
+
+
+.measurement-coming-badge{
+    display:inline-block;
+
+    padding:6px 11px;
+
+    border-radius:20px;
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+}
+
+
+.measurement-icon{
+    width:75px;
+
+    height:75px;
+
+    margin:22px auto 18px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+    font-size:24px;
+
+    font-weight:700;
+}
+
+
+.measurement-coming-card h2{
+    margin:0;
+
+    font-size:26px;
+}
+
+
+.measurement-api-message{
+    margin:10px 0 0;
+
+    color:#7c3aed;
+
+    font-weight:600;
+}
+
+
+.measurement-description{
+    max-width:620px;
+
+    margin:14px auto 30px;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* ==========================
+   FEATURES
+========================== */
+
+.measurement-feature-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:15px;
+
+    text-align:left;
+}
+
+
+.measurement-feature{
+    padding:18px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    background:#f9fafb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+
+.measurement-feature strong{
+    font-size:14px;
+}
+
+
+.measurement-feature span{
+    color:#6b7280;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .tailor-measurement-sidebar{
+        display:none;
+    }
+
+
+    .tailor-measurement-main{
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+    }
+
+
+    .measurement-coming-card{
+        margin-top:20px;
+
+        padding:25px;
+    }
+
+
+    .measurement-feature-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* ==========================
+   NOTIFICATION BADGE
+========================== */
+
+.tailor-measurement-sidebar nav button{
+    position:relative;
+}
+
+
+.notification-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    line-height:1;
+}

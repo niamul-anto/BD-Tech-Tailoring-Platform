@@ -1,0 +1,801 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.customer-tailors-page{
+    min-height:100vh;
+
+    display:flex;
+
+    background:#f5f7fa;
+
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.customer-tailors-sidebar{
+    width:245px;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    z-index:100;
+}
+
+
+.customer-tailors-logo{
+    padding-left:10px;
+
+    margin-bottom:40px;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+
+.customer-tailors-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.customer-tailors-sidebar nav button,
+.customer-tailors-sidebar-bottom button{
+    width:100%;
+
+    position:relative;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:13px 15px;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.customer-tailors-sidebar nav button:hover,
+.customer-tailors-sidebar-bottom button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+.customer-tailors-sidebar nav button.active{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.notification-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1;
+}
+
+
+.customer-tailors-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.customer-tailors-main{
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    margin-left:245px;
+
+    padding:35px;
+}
+
+
+.customer-tailors-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+
+.customer-tailors-header h1{
+    margin:0;
+
+    font-size:30px;
+}
+
+
+.customer-tailors-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+}
+
+
+.customer-tailors-count{
+    padding:10px 14px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:8px;
+
+    background:white;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+/* ==========================
+   FILTER
+========================== */
+
+.customer-tailor-filter-card{
+    margin-bottom:25px;
+
+    padding:20px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.03);
+}
+
+
+.customer-tailor-filter-form{
+    display:grid;
+
+    grid-template-columns:
+        minmax(180px,1.4fr)
+        minmax(150px,1fr)
+        minmax(140px,0.8fr)
+        minmax(160px,1fr)
+        auto;
+
+    gap:12px;
+
+    align-items:end;
+}
+
+
+.customer-tailor-filter-field{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+
+.customer-tailor-filter-field label{
+    color:#4b5563;
+
+    font-size:11px;
+
+    font-weight:600;
+}
+
+
+.customer-tailor-filter-field input{
+    width:100%;
+
+    padding:10px 11px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:12px;
+}
+
+
+.customer-tailor-filter-field input:focus{
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,0.07);
+}
+
+
+.customer-tailor-filter-actions{
+    display:flex;
+
+    gap:7px;
+}
+
+
+.customer-tailor-search-btn,
+.customer-tailor-reset-btn{
+    min-height:38px;
+
+    padding:0 14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.customer-tailor-search-btn{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.customer-tailor-reset-btn{
+    background:#f3f4f6;
+
+    color:#374151;
+}
+
+
+/* ==========================
+   ERROR / STATE
+========================== */
+
+.customer-tailors-error{
+    margin-bottom:20px;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.customer-tailors-state{
+    padding:40px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    text-align:center;
+
+    color:#6b7280;
+}
+
+
+/* ==========================
+   GRID
+========================== */
+
+.customer-tailors-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:20px;
+}
+
+
+.customer-tailor-card{
+    padding:20px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+
+    transition:0.2s;
+}
+
+
+.customer-tailor-card:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,0.07);
+}
+
+
+/* ==========================
+   CARD TOP
+========================== */
+
+.customer-tailor-card-top{
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding-bottom:17px;
+
+    border-bottom:1px solid #f1f5f9;
+}
+
+
+.customer-tailor-image,
+.customer-tailor-avatar{
+    width:62px;
+
+    height:62px;
+
+    min-width:62px;
+
+    border-radius:50%;
+}
+
+
+.customer-tailor-image{
+    object-fit:cover;
+}
+
+
+.customer-tailor-avatar{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    font-size:22px;
+
+    font-weight:800;
+}
+
+
+.customer-tailor-heading{
+    min-width:0;
+}
+
+
+.customer-tailor-heading h2{
+    margin:0;
+
+    font-size:17px;
+}
+
+
+.customer-tailor-heading p{
+    margin:4px 0;
+
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+.customer-tailor-approved{
+    display:inline-flex;
+
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:8px;
+
+    font-weight:700;
+}
+
+
+/* ==========================
+   INFO
+========================== */
+
+.customer-tailor-info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:8px;
+
+    margin-top:16px;
+}
+
+
+.customer-tailor-info-grid > div{
+    min-width:0;
+
+    padding:10px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    border-radius:8px;
+
+    background:#f9fafb;
+}
+
+
+.customer-tailor-info-grid span{
+    color:#6b7280;
+
+    font-size:8px;
+}
+
+
+.customer-tailor-info-grid strong{
+    overflow:hidden;
+
+    font-size:10px;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
+
+
+/* ==========================
+   SPECIALIZATION
+========================== */
+
+.customer-tailor-specialization{
+    margin-top:15px;
+}
+
+
+.customer-tailor-specialization > span{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#6b7280;
+
+    font-size:9px;
+}
+
+
+.customer-tailor-specialization > div{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:5px;
+}
+
+
+.customer-tailor-specialization > div > span{
+    padding:5px 8px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:9px;
+}
+
+
+.customer-tailor-specialization small{
+    color:#9ca3af;
+
+    font-size:9px;
+}
+
+
+/* ==========================
+   DESCRIPTION
+========================== */
+
+.customer-tailor-description{
+    min-height:52px;
+
+    margin:14px 0 0;
+
+    color:#6b7280;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:3;
+
+    line-clamp:3;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+}
+
+
+/* ==========================
+   PORTFOLIO PREVIEW
+========================== */
+
+.customer-tailor-portfolio-preview{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:6px;
+
+    margin-top:14px;
+}
+
+
+.customer-tailor-portfolio-preview img{
+    width:100%;
+
+    height:70px;
+
+    border-radius:7px;
+
+    object-fit:cover;
+
+    background:#e5e7eb;
+}
+
+
+/* ==========================
+   ACTIONS
+========================== */
+
+.customer-tailor-actions{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:17px;
+}
+
+
+.customer-tailor-view-btn,
+.customer-tailor-message-btn{
+    flex:1;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:9px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.customer-tailor-view-btn{
+    background:#eff6ff;
+
+    color:#2563eb;
+}
+
+
+.customer-tailor-view-btn:hover{
+    background:#dbeafe;
+}
+
+
+.customer-tailor-message-btn{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.customer-tailor-message-btn:hover{
+    background:#1d4ed8;
+}
+
+
+.customer-tailor-view-btn:disabled,
+.customer-tailor-message-btn:disabled{
+    opacity:0.5;
+
+    cursor:not-allowed;
+}
+
+
+/* ==========================
+   EMPTY
+========================== */
+
+.customer-no-tailors{
+    grid-column:1/-1;
+
+    padding:50px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    text-align:center;
+}
+
+
+.customer-no-tailors h3{
+    margin:0 0 7px;
+}
+
+
+.customer-no-tailors p{
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1180px){
+
+    .customer-tailors-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+
+    .customer-tailor-filter-form{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+
+    .customer-tailor-filter-actions{
+        grid-column:1/-1;
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .customer-tailors-sidebar{
+        display:none;
+    }
+
+
+    .customer-tailors-main{
+        width:100%;
+
+        margin-left:0;
+
+        padding:20px;
+    }
+
+
+    .customer-tailors-header{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .customer-tailor-filter-form,
+    .customer-tailors-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .customer-tailor-filter-actions{
+        grid-column:auto;
+    }
+
+
+    .customer-tailor-search-btn,
+    .customer-tailor-reset-btn{
+        flex:1;
+    }
+
+
+    .customer-tailor-info-grid{
+        grid-template-columns:1fr;
+    }
+
+}

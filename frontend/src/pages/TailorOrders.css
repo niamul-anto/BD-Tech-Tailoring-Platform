@@ -1,0 +1,834 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.tailor-orders-page{
+    min-height:100vh;
+    display:flex;
+
+    background:#f5f7fa;
+
+    color:#1f2937;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.tailor-orders-sidebar{
+    width:245px;
+    min-height:100vh;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    padding:28px 18px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+.tailor-orders-logo{
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    padding-left:10px;
+}
+
+
+.tailor-orders-sidebar nav{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.tailor-orders-sidebar nav button,
+.tailor-orders-sidebar-bottom button{
+    width:100%;
+
+    position:relative;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px 15px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.tailor-orders-sidebar nav button:hover,
+.tailor-orders-sidebar-bottom button:hover{
+    background:#1f2937;
+
+    color:white;
+}
+
+
+.tailor-orders-sidebar nav button.active{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+/* ==========================
+   NOTIFICATION BADGE
+========================== */
+
+.notification-nav-badge{
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1;
+}
+
+
+.tailor-orders-sidebar-bottom{
+    margin-top:auto;
+}
+
+
+/* ==========================
+   MAIN
+========================== */
+
+.tailor-orders-main{
+    margin-left:245px;
+
+    width:calc(100% - 245px);
+
+    min-height:100vh;
+
+    padding:35px;
+}
+
+
+.tailor-orders-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:28px;
+}
+
+
+.tailor-orders-header h1{
+    margin:0;
+
+    font-size:30px;
+}
+
+
+.tailor-orders-header p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+}
+
+
+.tailor-orders-count{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    color:#6b7280;
+
+    font-size:14px;
+}
+
+
+/* ==========================
+   ERROR / STATE
+========================== */
+
+.tailor-orders-error{
+    padding:15px;
+
+    margin-bottom:20px;
+
+    border-radius:8px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.tailor-orders-state{
+    padding:35px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    text-align:center;
+}
+
+
+/* ==========================
+   ORDER LIST
+========================== */
+
+.tailor-orders-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+}
+
+
+.tailor-order-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:24px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+/* ==========================
+   TOP
+========================== */
+
+.tailor-order-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    padding-bottom:18px;
+
+    border-bottom:1px solid #f1f5f9;
+}
+
+
+.tailor-order-id-label{
+    display:block;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    margin-bottom:5px;
+}
+
+
+.tailor-order-id{
+    font-size:14px;
+}
+
+
+.tailor-order-status-group{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+
+/* ==========================
+   STATUS
+========================== */
+
+.tailor-order-status,
+.tailor-payment-status{
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:capitalize;
+}
+
+
+.tailor-order-status.pending{
+    background:#fef3c7;
+
+    color:#b45309;
+}
+
+
+.tailor-order-status.accepted{
+    background:#dbeafe;
+
+    color:#2563eb;
+}
+
+
+.tailor-order-status.processing{
+    background:#ede9fe;
+
+    color:#7c3aed;
+}
+
+
+.tailor-order-status.completed{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.tailor-order-status.cancelled{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.tailor-payment-status.paid{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.tailor-payment-status.unpaid{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+/* ==========================
+   INFO GRID
+========================== */
+
+.tailor-order-info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+
+.tailor-order-info-box{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    background:#f9fafb;
+}
+
+
+.tailor-order-info-box > span{
+    color:#6b7280;
+
+    font-size:12px;
+}
+
+
+.tailor-order-info-box strong{
+    font-size:14px;
+}
+
+
+.tailor-order-info-box small{
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+.tailor-order-price{
+    color:#15803d;
+}
+
+
+/* ==========================
+   EXTRA INFO
+========================== */
+
+.tailor-order-extra-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:16px;
+
+    margin-top:18px;
+}
+
+
+.tailor-order-extra-box{
+    padding:16px;
+
+    border:1px solid #f1f5f9;
+
+    border-radius:10px;
+}
+
+
+.tailor-order-extra-box > span{
+    display:block;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+
+.tailor-order-extra-box p{
+    margin:0;
+
+    color:#374151;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+.measurement-data{
+    margin:0;
+
+    padding:12px;
+
+    max-height:180px;
+
+    overflow:auto;
+
+    border-radius:8px;
+
+    background:#f9fafb;
+
+    font-size:12px;
+
+    white-space:pre-wrap;
+}
+
+
+/* ==========================
+   TRACKING
+========================== */
+
+.tailor-order-tracking{
+    margin-top:22px;
+
+    padding-top:20px;
+
+    border-top:1px solid #f1f5f9;
+}
+
+
+.tailor-order-tracking h3{
+    margin:0 0 16px;
+
+    font-size:16px;
+}
+
+
+.tailor-tracking-list{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:24px;
+}
+
+
+.tailor-tracking-item{
+    display:flex;
+
+    gap:9px;
+
+    align-items:flex-start;
+}
+
+
+.tailor-tracking-dot{
+    width:10px;
+
+    height:10px;
+
+    min-width:10px;
+
+    margin-top:5px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+}
+
+
+.tailor-tracking-item > div:last-child{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+}
+
+
+.tailor-tracking-item strong{
+    font-size:13px;
+
+    text-transform:capitalize;
+}
+
+
+.tailor-tracking-item span{
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+
+.tailor-no-history{
+    color:#9ca3af;
+
+    font-size:13px;
+}
+
+
+/* ==========================
+   ACTION
+========================== */
+
+.tailor-order-actions{
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:22px;
+
+    padding-top:18px;
+
+    border-top:1px solid #f1f5f9;
+}
+
+
+.tailor-status-action{
+    border:none;
+
+    padding:10px 17px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+.tailor-status-action.accepted{
+    background:#2563eb;
+
+    color:white;
+}
+
+
+.tailor-status-action.processing{
+    background:#7c3aed;
+
+    color:white;
+}
+
+
+.tailor-status-action.completed{
+    background:#16a34a;
+
+    color:white;
+}
+
+
+.tailor-status-action:hover{
+    opacity:0.9;
+}
+
+
+.tailor-status-action:disabled{
+    opacity:0.6;
+
+    cursor:not-allowed;
+}
+
+
+.tailor-order-finished{
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+.tailor-order-cancelled{
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+/* ==========================
+   EMPTY
+========================== */
+
+.tailor-no-orders{
+    padding:40px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:white;
+
+    text-align:center;
+
+    color:#6b7280;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1050px){
+
+    .tailor-order-info-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .tailor-orders-sidebar{
+        display:none;
+    }
+
+
+    .tailor-orders-main{
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+    }
+
+
+    .tailor-orders-header{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+
+    .tailor-order-top{
+        flex-direction:column;
+    }
+
+
+    .tailor-order-info-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .tailor-order-extra-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+/* ==========================
+   MEASUREMENT DISPLAY
+========================== */
+
+.tailor-measurement-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:8px;
+}
+
+
+.tailor-measurement-item{
+    min-width:0;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#f9fafb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+
+.tailor-measurement-item > span{
+    color:#6b7280;
+
+    font-size:9px;
+
+    font-weight:500;
+}
+
+
+.tailor-measurement-item > strong{
+    color:#1f2937;
+
+    font-size:12px;
+
+    word-break:break-word;
+}
+
+
+.tailor-measurement-item.notes{
+    grid-column:1/-1;
+}
+
+
+.tailor-measurement-item.notes > strong{
+    font-weight:500;
+
+    line-height:1.6;
+}
+
+
+.tailor-no-measurement{
+    margin:0;
+
+    color:#9ca3af;
+
+    font-size:12px;
+
+    font-style:italic;
+}
+
+
+@media(max-width:768px){
+
+    .tailor-measurement-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .tailor-measurement-item.notes{
+        grid-column:auto;
+    }
+
+}

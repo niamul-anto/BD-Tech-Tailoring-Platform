@@ -1,0 +1,190 @@
+*{
+    box-sizing:border-box;
+}
+
+
+.login-page{
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    background:#f5f7fa;
+}
+
+
+.login-card{
+    width:100%;
+
+    max-width:430px;
+
+    padding:34px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    background:white;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.06);
+}
+
+
+.login-logo{
+    margin-bottom:30px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+.login-heading{
+    margin-bottom:25px;
+}
+
+
+.login-heading h1{
+    margin:0;
+
+    font-size:28px;
+}
+
+
+.login-heading p{
+    margin:7px 0 0;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+.login-error,
+.login-success{
+    padding:11px 13px;
+
+    margin-bottom:17px;
+
+    border-radius:8px;
+
+    font-size:12px;
+}
+
+
+.login-error{
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+
+.login-success{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+
+.login-form{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:17px;
+}
+
+
+.login-field{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+}
+
+
+.login-field label{
+    font-size:13px;
+
+    font-weight:600;
+}
+
+
+.login-field input{
+    width:100%;
+
+    padding:12px 13px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:14px;
+}
+
+
+.login-field input:focus{
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,0.08);
+}
+
+
+.login-submit{
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+.login-submit:disabled{
+    opacity:0.6;
+
+    cursor:not-allowed;
+}
+
+
+.login-register{
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+.login-register a{
+    color:#2563eb;
+
+    font-weight:600;
+
+    text-decoration:none;
+}
