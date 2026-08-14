@@ -3,6 +3,7 @@ const Gig = require("../models/Gig");
 const Order = require("../models/Order");
 const Payment = require("../models/paymentModel");
 const TailorProfile = require("../models/TailorProfile");
+const Notification = require("../models/Notification");
 
 
 
@@ -109,6 +110,8 @@ catch(error){
 
 };
 
+
+
 // ==========================
 // GET ALL USERS
 // ADMIN ONLY
@@ -147,6 +150,7 @@ catch(error){
 }
 
 };
+
 
 
 // ==========================
@@ -209,6 +213,8 @@ catch(error){
 
 };
 
+
+
 // ==========================
 // GET ALL GIGS
 // ADMIN ONLY
@@ -258,6 +264,7 @@ catch(error){
 }
 
 };
+
 
 
 // ==========================
@@ -465,6 +472,8 @@ catch(error){
 
 };
 
+
+
 // ==========================
 // DELETE GIG
 // ADMIN ONLY
@@ -521,6 +530,8 @@ catch(error){
 
 };
 
+
+
 // ==========================
 // GET ALL PAYMENTS
 // ADMIN ONLY
@@ -576,6 +587,8 @@ catch(error){
 
 };
 
+
+
 // ==========================
 // APPROVE TAILOR
 // ADMIN ONLY
@@ -586,14 +599,16 @@ const approveTailor = async(req,res)=>{
 try{
 
 
-    const tailorProfile = await TailorProfile.findOne({
+    const tailorProfile =
+        await TailorProfile.findOne({
 
-        user:req.params.tailorId
+            user:req.params.tailorId
 
-    }).populate(
-        "user",
-        "name email phone role"
-    );
+        })
+        .populate(
+            "user",
+            "name email phone role"
+        );
 
 
     if(!tailorProfile){
@@ -607,7 +622,11 @@ try{
     }
 
 
-    if(tailorProfile.verificationStatus === "approved"){
+
+    if(
+        tailorProfile.verificationStatus ===
+        "approved"
+    ){
 
         return res.status(400).json({
 
@@ -618,10 +637,97 @@ try{
     }
 
 
-    tailorProfile.verificationStatus = "approved";
+
+    tailorProfile.verificationStatus =
+        "approved";
 
 
     await tailorProfile.save();
+
+
+
+
+
+    // ==========================
+    // CREATE TAILOR NOTIFICATION
+    // ==========================
+
+    try{
+
+
+        const notification =
+            await Notification.create({
+
+                user:
+                    tailorProfile.user._id,
+
+                message:
+                    "Your tailor account has been approved by admin",
+
+                type:
+                    "tailor_approved"
+
+            });
+
+
+
+        // ==========================
+        // LIVE SOCKET NOTIFICATION
+        // ==========================
+
+        const io =
+            req.app.get("io");
+
+
+        if(io){
+
+            io.to(
+                `user_${tailorProfile.user._id}`
+            ).emit(
+
+                "receive_notification",
+
+                {
+
+                    _id:
+                        notification._id,
+
+                    user:
+                        tailorProfile.user._id,
+
+                    message:
+                        notification.message,
+
+                    type:
+                        notification.type,
+
+                    isRead:
+                        notification.isRead,
+
+                    createdAt:
+                        notification.createdAt
+
+                }
+
+            );
+
+        }
+
+
+    }
+    catch(notificationError){
+
+
+        console.log(
+            "Tailor approval notification error:",
+            notificationError
+        );
+
+
+    }
+
+
+
 
 
     res.status(200).json({
@@ -664,14 +770,16 @@ const rejectTailor = async(req,res)=>{
 try{
 
 
-    const tailorProfile = await TailorProfile.findOne({
+    const tailorProfile =
+        await TailorProfile.findOne({
 
-        user:req.params.tailorId
+            user:req.params.tailorId
 
-    }).populate(
-        "user",
-        "name email phone role"
-    );
+        })
+        .populate(
+            "user",
+            "name email phone role"
+        );
 
 
     if(!tailorProfile){
@@ -685,7 +793,11 @@ try{
     }
 
 
-    if(tailorProfile.verificationStatus === "rejected"){
+
+    if(
+        tailorProfile.verificationStatus ===
+        "rejected"
+    ){
 
         return res.status(400).json({
 
@@ -696,10 +808,97 @@ try{
     }
 
 
-    tailorProfile.verificationStatus = "rejected";
+
+    tailorProfile.verificationStatus =
+        "rejected";
 
 
     await tailorProfile.save();
+
+
+
+
+
+    // ==========================
+    // CREATE TAILOR NOTIFICATION
+    // ==========================
+
+    try{
+
+
+        const notification =
+            await Notification.create({
+
+                user:
+                    tailorProfile.user._id,
+
+                message:
+                    "Your tailor account verification has been rejected by admin",
+
+                type:
+                    "tailor_rejected"
+
+            });
+
+
+
+        // ==========================
+        // LIVE SOCKET NOTIFICATION
+        // ==========================
+
+        const io =
+            req.app.get("io");
+
+
+        if(io){
+
+            io.to(
+                `user_${tailorProfile.user._id}`
+            ).emit(
+
+                "receive_notification",
+
+                {
+
+                    _id:
+                        notification._id,
+
+                    user:
+                        tailorProfile.user._id,
+
+                    message:
+                        notification.message,
+
+                    type:
+                        notification.type,
+
+                    isRead:
+                        notification.isRead,
+
+                    createdAt:
+                        notification.createdAt
+
+                }
+
+            );
+
+        }
+
+
+    }
+    catch(notificationError){
+
+
+        console.log(
+            "Tailor rejection notification error:",
+            notificationError
+        );
+
+
+    }
+
+
+
 
 
     res.status(200).json({
@@ -728,6 +927,8 @@ catch(error){
 }
 
 };
+
+
 
 // ==========================
 // GET PENDING TAILORS

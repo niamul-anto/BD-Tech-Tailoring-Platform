@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const OTP = require("../models/OTP");
 const TailorProfile = require("../models/TailorProfile");
+const Notification = require("../models/Notification");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -494,6 +495,109 @@ const verifyOTP = async(req,res)=>{
                 });
 
             }
+
+
+
+
+
+            // ==========================
+            // NOTIFY ALL ADMINS
+            // ==========================
+
+            try{
+
+
+                const admins =
+                    await User.find({
+
+                        role:"admin"
+
+                    });
+
+
+
+                const io =
+                    req.app.get("io");
+
+
+
+                for(const admin of admins){
+
+
+                    const notification =
+                        await Notification.create({
+
+                            user:admin._id,
+
+                            message:
+                                `New tailor verification request from ${user.name}`,
+
+                            type:"tailor_request"
+
+                        });
+
+
+
+                    // ==========================
+                    // LIVE SOCKET NOTIFICATION
+                    // ==========================
+
+                    if(io){
+
+                        io.to(
+                            `user_${admin._id}`
+                        ).emit(
+
+                            "receive_notification",
+
+                            {
+
+                                _id:
+                                    notification._id,
+
+                                user:
+                                    admin._id,
+
+                                sender:
+                                    user._id,
+
+                                message:
+                                    notification.message,
+
+                                type:
+                                    notification.type,
+
+                                isRead:
+                                    notification.isRead,
+
+                                createdAt:
+                                    notification.createdAt
+
+                            }
+
+                        );
+
+                    }
+
+
+                }
+
+
+            }
+            catch(notificationError){
+
+
+                // Registration should still succeed
+                // if notification fails
+
+                console.log(
+                    "Admin tailor request notification error:",
+                    notificationError
+                );
+
+
+            }
+
 
         }
 

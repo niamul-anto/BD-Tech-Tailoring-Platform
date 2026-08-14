@@ -24,7 +24,11 @@ const notificationSchema = new mongoose.Schema(
             "payment",
             "review",
             "message",
-            "system"
+            "system",
+
+            "tailor_request",
+            "tailor_approved",
+            "tailor_rejected"
         ],
         default:"system"
     },
