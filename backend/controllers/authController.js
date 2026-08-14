@@ -197,15 +197,50 @@ const registerUser = async(req,res)=>{
 
 
 
-        // Send OTP email
+        // ==========================
+        // SEND OTP EMAIL
+        // TEST MODE SAFE
+        // ==========================
 
-        await sendEmail(
+        let emailSent = true;
 
-            email,
 
-            otp
+        try{
 
-        );
+
+            await sendEmail(
+
+                email,
+
+                otp
+
+            );
+
+
+        }
+        catch(emailError){
+
+
+            emailSent = false;
+
+
+            console.log(
+                "OTP email could not be sent."
+            );
+
+
+            console.log(
+                "Testing account email:",
+                email
+            );
+
+
+            console.log(
+                "Use OTP from MongoDB database for testing."
+            );
+
+
+        }
 
 
 
@@ -220,10 +255,16 @@ const registerUser = async(req,res)=>{
         return res.status(200).json({
 
             message:
-            "OTP sent successfully. Please verify your email.",
+                emailSent
+                ?
+                "OTP sent successfully. Please verify your email."
+                :
+                "OTP created successfully. Email delivery is unavailable for this address. Use the database OTP for testing.",
 
 
-            email
+            email,
+
+            emailSent
 
         });
 
@@ -538,10 +579,6 @@ const verifyOTP = async(req,res)=>{
 
 
 
-                    // ==========================
-                    // LIVE SOCKET NOTIFICATION
-                    // ==========================
-
                     if(io){
 
                         io.to(
@@ -586,9 +623,6 @@ const verifyOTP = async(req,res)=>{
             }
             catch(notificationError){
 
-
-                // Registration should still succeed
-                // if notification fails
 
                 console.log(
                     "Admin tailor request notification error:",
@@ -727,6 +761,22 @@ const loginUser = async(req,res)=>{
 
             });
 
+
+        }
+
+
+
+        // ==========================
+        // BLOCKED USER CHECK
+        // ==========================
+
+        if(user.isBlocked === true){
+
+            return res.status(403).json({
+
+                message:"Your account has been blocked"
+
+            });
 
         }
 
