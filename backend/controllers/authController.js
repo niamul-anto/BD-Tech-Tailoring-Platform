@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const OTP = require("../models/OTP");
+const TailorProfile = require("../models/TailorProfile");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -23,6 +24,7 @@ const validateEmail = (email) => {
     return emailRegex.test(email);
 
 };
+
 
 
 
@@ -155,6 +157,7 @@ const registerUser = async(req,res)=>{
 
 
 
+
         // Remove previous OTP
 
         await OTP.deleteMany({
@@ -162,6 +165,7 @@ const registerUser = async(req,res)=>{
             email
 
         });
+
 
 
 
@@ -189,6 +193,9 @@ const registerUser = async(req,res)=>{
 
 
 
+
+
+
         // Send OTP email
 
         await sendEmail(
@@ -198,6 +205,10 @@ const registerUser = async(req,res)=>{
             otp
 
         );
+
+
+
+
 
 
 
@@ -245,6 +256,8 @@ const registerUser = async(req,res)=>{
 
 
 
+
+
 // ==========================
 // VERIFY OTP
 // ==========================
@@ -272,6 +285,8 @@ const verifyOTP = async(req,res)=>{
             otp
 
         } = req.body;
+
+
 
 
 
@@ -386,6 +401,8 @@ const verifyOTP = async(req,res)=>{
 
 
 
+
+
         // Hash password
 
         const hashedPassword = await bcrypt.hash(
@@ -395,6 +412,9 @@ const verifyOTP = async(req,res)=>{
             10
 
         );
+
+
+
 
 
 
@@ -428,6 +448,63 @@ const verifyOTP = async(req,res)=>{
 
 
 
+
+
+        // ==========================
+        // CREATE TAILOR PROFILE
+        // AUTOMATICALLY
+        // ==========================
+
+        if(user.role === "tailor"){
+
+            const existingTailorProfile =
+                await TailorProfile.findOne({
+
+                    user:user._id
+
+                });
+
+
+            if(!existingTailorProfile){
+
+                await TailorProfile.create({
+
+                    user:user._id,
+
+                    shopName:"",
+
+                    experience:0,
+
+                    specialization:[],
+
+                    location:"",
+
+                    description:"",
+
+                    profileImage:"",
+
+                    portfolioImages:[],
+
+                    isProfileComplete:false,
+
+                    verificationStatus:"pending",
+
+                    availabilityStatus:"available"
+
+                });
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
         // Delete OTP after successful verification
 
         await OTP.deleteOne({
@@ -443,9 +520,16 @@ const verifyOTP = async(req,res)=>{
 
 
 
+
+
+
         return res.status(201).json({
 
             message:
+            user.role === "tailor"
+            ?
+            "Registration completed successfully. Tailor verification is pending."
+            :
             "Registration completed successfully",
 
 
@@ -485,6 +569,8 @@ const verifyOTP = async(req,res)=>{
 
 
 };
+
+
 
 // ==========================
 // LOGIN USER
@@ -591,6 +677,8 @@ const loginUser = async(req,res)=>{
 
 
 
+
+
         return res.status(200).json({
 
             message:"Login successful",
@@ -614,6 +702,7 @@ const loginUser = async(req,res)=>{
 
 
 
+
     }
 
     catch(error){
@@ -633,6 +722,8 @@ const loginUser = async(req,res)=>{
 
 
 };
+
+
 
 // ==========================
 // LOGOUT
@@ -738,6 +829,8 @@ const logout = async(req,res)=>{
     }
 
 };
+
+
 
 module.exports = {
 

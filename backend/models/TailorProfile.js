@@ -11,17 +11,29 @@ const tailorProfileSchema = new mongoose.Schema({
     },
 
 
+    // ==========================
+    // SHOP NAME
+    // ==========================
+
     shopName:{
         type:String,
-        required:true
+        default:""
     },
 
+
+    // ==========================
+    // EXPERIENCE
+    // ==========================
 
     experience:{
         type:Number,
-        required:true
+        default:0
     },
 
+
+    // ==========================
+    // SPECIALIZATION
+    // ==========================
 
     specialization:[{
 
@@ -30,16 +42,29 @@ const tailorProfileSchema = new mongoose.Schema({
     }],
 
 
+    // ==========================
+    // LOCATION
+    // ==========================
+
     location:{
         type:String,
-        required:true
+        default:""
     },
 
+
+    // ==========================
+    // DESCRIPTION
+    // ==========================
 
     description:{
-        type:String
+        type:String,
+        default:""
     },
 
+
+    // ==========================
+    // PROFILE IMAGE
+    // ==========================
 
     profileImage:{
         type:String,
@@ -47,11 +72,25 @@ const tailorProfileSchema = new mongoose.Schema({
     },
 
 
+    // ==========================
+    // PORTFOLIO IMAGES
+    // ==========================
+
     portfolioImages:[{
 
         type:String
 
     }],
+
+
+    // ==========================
+    // PROFILE COMPLETION STATUS
+    // ==========================
+
+    isProfileComplete:{
+        type:Boolean,
+        default:false
+    },
 
 
     // ==========================
@@ -83,6 +122,10 @@ const tailorProfileSchema = new mongoose.Schema({
         default:"available"
     },
 
+
+    // ==========================
+    // CREATED AT
+    // ==========================
 
     createdAt:{
         type:Date,
