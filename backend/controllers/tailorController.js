@@ -1,9 +1,11 @@
+const User = require("../models/User");
 const TailorProfile = require("../models/TailorProfile");
 
 const {
     uploadToCloudinary,
     uploadPortfolioImage
 } = require("../utils/uploadToCloudinary");
+
 
 
 // ==========================
@@ -56,20 +58,39 @@ const createTailorProfile = async(req,res)=>{
 
             user:req.user._id,
 
-            shopName,
+            shopName:
+                shopName || "",
 
-            experience,
+            experience:
+                experience !== undefined
+                ? experience
+                : 0,
 
-            specialization,
+            specialization:
+                specialization || [],
 
-            location,
+            location:
+                location || "",
 
-            description,
+            description:
+                description || "",
 
-            profileImage,
+            profileImage:
+                profileImage || "",
 
-            portfolioImages
+            portfolioImages:
+                portfolioImages || [],
 
+            isProfileComplete:
+                Boolean(
+                    shopName &&
+                    location &&
+                    Number(experience) >= 0
+                ),
+
+            verificationStatus:"pending",
+
+            availabilityStatus:"available"
 
         });
 
@@ -119,25 +140,99 @@ const getTailorProfile = async(req,res)=>{
     try{
 
 
-        const profile = await TailorProfile.findOne({
+        let profile =
+        await TailorProfile.findOne({
 
             user:req.params.userId
 
         })
         .populate(
             "user",
-            "name email phone gender profileImage"
+            "name email phone gender profileImage role"
         );
 
 
 
+        // ==========================
+        // OLD TAILOR ACCOUNT FIX
+        // AUTO CREATE PROFILE
+        // ==========================
+
         if(!profile){
 
-            return res.status(404).json({
 
-                message:"Tailor profile not found"
+            const user =
+            await User.findById(
+
+                req.params.userId
+
+            );
+
+
+
+            if(!user){
+
+                return res.status(404).json({
+
+                    message:"User not found"
+
+                });
+
+            }
+
+
+
+            if(user.role !== "tailor"){
+
+                return res.status(400).json({
+
+                    message:"User is not a tailor"
+
+                });
+
+            }
+
+
+
+            const newProfile =
+            await TailorProfile.create({
+
+                user:user._id,
+
+                shopName:"",
+
+                experience:0,
+
+                specialization:[],
+
+                location:"",
+
+                description:"",
+
+                profileImage:"",
+
+                portfolioImages:[],
+
+                isProfileComplete:false,
+
+                verificationStatus:"pending",
+
+                availabilityStatus:"available"
 
             });
+
+
+
+            profile =
+            await TailorProfile.findById(
+
+                newProfile._id
+
+            )
+            .populate(
+                "user",
+                "name email phone gender profileImage role"
+            );
 
         }
 
@@ -158,7 +253,10 @@ const getTailorProfile = async(req,res)=>{
     catch(error){
 
 
-        console.log(error);
+        console.log(
+            "Get tailor profile error:",
+            error
+        );
 
 
         res.status(500).json({
@@ -295,7 +393,8 @@ try{
 
 
 
-    const tailors = await TailorProfile.find(filter)
+    const tailors =
+    await TailorProfile.find(filter)
 
     .populate(
 
@@ -304,6 +403,7 @@ try{
         "name email profileImage"
 
     );
+
 
 
 
@@ -347,7 +447,8 @@ const uploadProfileImage = async(req,res)=>{
 try{
 
 
-    const tailor = await TailorProfile.findOne({
+    const tailor =
+    await TailorProfile.findOne({
 
         user:req.user._id
 
@@ -381,7 +482,8 @@ try{
 
 
 
-    const imageUrl = await uploadToCloudinary(
+    const imageUrl =
+    await uploadToCloudinary(
 
         req.file.buffer
 
@@ -437,7 +539,8 @@ const uploadPortfolioImages = async(req,res)=>{
 try{
 
 
-    const tailor = await TailorProfile.findOne({
+    const tailor =
+    await TailorProfile.findOne({
 
         user:req.user._id
 
@@ -457,7 +560,10 @@ try{
 
 
 
-    if(!req.files || req.files.length === 0){
+    if(
+        !req.files ||
+        req.files.length === 0
+    ){
 
         return res.status(400).json({
 
@@ -474,17 +580,24 @@ try{
 
     for(const file of req.files){
 
-        const imageUrl = await uploadPortfolioImage(
+        const imageUrl =
+        await uploadPortfolioImage(
+
             file.buffer
+
         );
 
-        imageUrls.push(imageUrl);
+        imageUrls.push(
+            imageUrl
+        );
 
     }
 
 
 
-    tailor.portfolioImages.push(...imageUrls);
+    tailor.portfolioImages.push(
+        ...imageUrls
+    );
 
 
     await tailor.save();
@@ -495,7 +608,8 @@ try{
 
         message:"Portfolio images uploaded successfully",
 
-        portfolioImages:tailor.portfolioImages
+        portfolioImages:
+            tailor.portfolioImages
 
     });
 
@@ -524,6 +638,7 @@ catch(error){
 
 
 
+
 // ==========================
 // UPDATE TAILOR PROFILE
 // ==========================
@@ -531,6 +646,7 @@ catch(error){
 const updateTailorProfile = async(req,res)=>{
 
     try{
+
 
         const {
 
@@ -543,11 +659,14 @@ const updateTailorProfile = async(req,res)=>{
         } = req.body;
 
 
-        const profile = await TailorProfile.findOne({
+
+        const profile =
+        await TailorProfile.findOne({
 
             user:req.user._id
 
         });
+
 
 
         if(!profile){
@@ -561,42 +680,75 @@ const updateTailorProfile = async(req,res)=>{
         }
 
 
+
         if(shopName !== undefined){
 
-            profile.shopName = shopName;
+            profile.shopName =
+                shopName;
 
         }
+
 
 
         if(experience !== undefined){
 
-            profile.experience = experience;
+            profile.experience =
+                experience;
 
         }
+
 
 
         if(specialization !== undefined){
 
-            profile.specialization = specialization;
+            profile.specialization =
+                specialization;
 
         }
+
 
 
         if(location !== undefined){
 
-            profile.location = location;
+            profile.location =
+                location;
 
         }
+
 
 
         if(description !== undefined){
 
-            profile.description = description;
+            profile.description =
+                description;
 
         }
 
 
+
+        // ==========================
+        // CHECK PROFILE COMPLETION
+        // ==========================
+
+        profile.isProfileComplete =
+            Boolean(
+
+                profile.shopName?.trim() &&
+
+                profile.location?.trim() &&
+
+                profile.experience !==
+                undefined &&
+
+                profile.experience !==
+                null
+
+            );
+
+
+
         await profile.save();
+
 
 
         res.status(200).json({
@@ -623,6 +775,7 @@ const updateTailorProfile = async(req,res)=>{
     }
 
 };
+
 
 
 
@@ -746,6 +899,7 @@ const updateAvailability = async(req,res)=>{
     }
 
 };
+
 
 
 
