@@ -116,7 +116,7 @@ const Login = () => {
             else if(role === "customer"){
 
                 navigate(
-                    "/customer",
+                    "/customer/gigs",
                     {
                         replace:true
                     }
