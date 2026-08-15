@@ -13,14 +13,9 @@ const {
 // CREATE ORDER
 // =======================
 
-// =======================
-// CREATE ORDER
-// =======================
-
 const createOrder = async(req,res)=>{
 
     try{
-
 
         console.log(
             "========== CREATE ORDER START =========="
@@ -42,13 +37,11 @@ const createOrder = async(req,res)=>{
         );
 
 
-
         const {
             gigId,
             deliveryAddress,
             measurement
         } = req.body || {};
-
 
 
         // ==========================
@@ -64,7 +57,6 @@ const createOrder = async(req,res)=>{
             });
 
         }
-
 
 
         // ==========================
@@ -88,7 +80,6 @@ const createOrder = async(req,res)=>{
         }
 
 
-
         // ==========================
         // PARSE DELIVERY ADDRESS
         // ==========================
@@ -98,8 +89,7 @@ const createOrder = async(req,res)=>{
 
 
         if(
-            typeof deliveryAddress ===
-            "string"
+            typeof deliveryAddress === "string"
         ){
 
             try{
@@ -130,11 +120,9 @@ const createOrder = async(req,res)=>{
         }
 
 
-
         if(
             !parsedDeliveryAddress ||
-            typeof parsedDeliveryAddress !==
-            "object"
+            typeof parsedDeliveryAddress !== "object"
         ){
 
             return res.status(400).json({
@@ -147,7 +135,6 @@ const createOrder = async(req,res)=>{
         }
 
 
-
         // ==========================
         // PARSE MEASUREMENT
         // ==========================
@@ -158,8 +145,7 @@ const createOrder = async(req,res)=>{
         if(measurement){
 
             if(
-                typeof measurement ===
-                "string"
+                typeof measurement === "string"
             ){
 
                 try{
@@ -198,7 +184,6 @@ const createOrder = async(req,res)=>{
         }
 
 
-
         // ==========================
         // REFERENCE IMAGES
         // ==========================
@@ -232,7 +217,6 @@ const createOrder = async(req,res)=>{
             }
 
         }
-
 
 
         // ==========================
@@ -272,12 +256,10 @@ const createOrder = async(req,res)=>{
             });
 
 
-
         console.log(
             "ORDER CREATED:",
             order._id
         );
-
 
 
         // ==========================
@@ -297,7 +279,6 @@ const createOrder = async(req,res)=>{
                     "order"
 
             });
-
 
 
         // ==========================
@@ -323,7 +304,6 @@ const createOrder = async(req,res)=>{
         }
 
 
-
         console.log(
             "========== CREATE ORDER SUCCESS =========="
         );
@@ -342,14 +322,11 @@ const createOrder = async(req,res)=>{
     }
     catch(error){
 
-
         console.error(
             "========== CREATE ORDER ERROR =========="
         );
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         console.error(
             "ERROR MESSAGE:",
@@ -373,8 +350,6 @@ const createOrder = async(req,res)=>{
     }
 
 };
-
-
 
 
 
