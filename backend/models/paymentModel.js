@@ -1,60 +1,67 @@
-const express = require("express");
-
-const router = express.Router();
+const mongoose = require("mongoose");
 
 
-const authMiddleware = require("../middleware/authMiddleware");
+const paymentSchema = new mongoose.Schema(
+{
 
-const roleMiddleware = require("../middleware/roleMiddleware");
-
-
-const {
-
-    createPayment,
-
-    getMyPayments,
-
-    getTailorEarnings
-
-} = require("../controllers/paymentController");
+    order:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Order",
+        required:true
+    },
 
 
+    customer:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+    },
 
-// Create Payment
 
-router.post(
-    "/create",
-    authMiddleware,
-    roleMiddleware("customer"),
-    createPayment
+    paymentMethod:{
+        type:String,
+        enum:[
+            "bkash",
+            "nagad"
+        ],
+        required:true
+    },
+
+
+    paymentStatus:{
+        type:String,
+        enum:[
+            "initiated",
+            "paid",
+            "failed"
+        ],
+        default:"initiated"
+    },
+
+
+    paymentId:{
+        type:String
+    },
+
+
+    transactionId:{
+        type:String
+    },
+
+
+    amount:{
+        type:Number,
+        required:true
+    }
+
+
+},
+{
+    timestamps:true
+});
+
+
+module.exports = mongoose.model(
+    "Payment",
+    paymentSchema
 );
-
-// Customer Payment History
-
-router.get(
-
-    "/my-payments",
-
-    authMiddleware,
-
-    roleMiddleware("customer"),
-
-    getMyPayments
-
-);
-
-// Tailor Earnings
-
-router.get(
-
-    "/earnings",
-
-    authMiddleware,
-
-    roleMiddleware("tailor"),
-
-    getTailorEarnings
-
-);
-
-module.exports = router;
