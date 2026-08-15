@@ -13,202 +13,366 @@ const {
 // CREATE ORDER
 // =======================
 
+// =======================
+// CREATE ORDER
+// =======================
+
 const createOrder = async(req,res)=>{
 
-try{
-
-    const {
-        gigId,
-        deliveryAddress,
-        measurement
-    } = req.body;
+    try{
 
 
+        console.log(
+            "========== CREATE ORDER START =========="
+        );
 
-    const gig = await Gig.findById(gigId);
+        console.log(
+            "BODY:",
+            req.body
+        );
 
+        console.log(
+            "FILES COUNT:",
+            req.files?.length || 0
+        );
 
-
-    if(!gig){
-
-        return res.status(404).json({
-
-            message:"Gig not found"
-
-        });
-
-    }
+        console.log(
+            "USER:",
+            req.user?._id
+        );
 
 
 
-    // ==========================
-    // REFERENCE IMAGES
-    // ==========================
+        const {
+            gigId,
+            deliveryAddress,
+            measurement
+        } = req.body || {};
 
-    const referenceImages = [];
 
 
-    if(
-        req.files &&
-        req.files.length > 0
-    ){
+        // ==========================
+        // CHECK GIG ID
+        // ==========================
 
-        for(const file of req.files){
+        if(!gigId){
 
-            const imageUrl =
-                await uploadPortfolioImage(
-                    file.buffer
+            return res.status(400).json({
+
+                message:"Gig ID is missing"
+
+            });
+
+        }
+
+
+
+        // ==========================
+        // FIND GIG
+        // ==========================
+
+        const gig =
+            await Gig.findById(
+                gigId
+            );
+
+
+        if(!gig){
+
+            return res.status(404).json({
+
+                message:"Gig not found"
+
+            });
+
+        }
+
+
+
+        // ==========================
+        // PARSE DELIVERY ADDRESS
+        // ==========================
+
+        let parsedDeliveryAddress =
+            deliveryAddress;
+
+
+        if(
+            typeof deliveryAddress ===
+            "string"
+        ){
+
+            try{
+
+                parsedDeliveryAddress =
+                    JSON.parse(
+                        deliveryAddress
+                    );
+
+            }
+            catch(error){
+
+                console.log(
+                    "DELIVERY ADDRESS PARSE ERROR:",
+                    deliveryAddress
                 );
 
 
-            referenceImages.push(
-                imageUrl
+                return res.status(400).json({
+
+                    message:
+                        "Invalid delivery address"
+
+                });
+
+            }
+
+        }
+
+
+
+        if(
+            !parsedDeliveryAddress ||
+            typeof parsedDeliveryAddress !==
+            "object"
+        ){
+
+            return res.status(400).json({
+
+                message:
+                    "Delivery address is required"
+
+            });
+
+        }
+
+
+
+        // ==========================
+        // PARSE MEASUREMENT
+        // ==========================
+
+        let parsedMeasurement = {};
+
+
+        if(measurement){
+
+            if(
+                typeof measurement ===
+                "string"
+            ){
+
+                try{
+
+                    parsedMeasurement =
+                        JSON.parse(
+                            measurement
+                        );
+
+                }
+                catch(error){
+
+                    console.log(
+                        "MEASUREMENT PARSE ERROR:",
+                        measurement
+                    );
+
+
+                    return res.status(400).json({
+
+                        message:
+                            "Invalid measurement data"
+
+                    });
+
+                }
+
+            }
+            else{
+
+                parsedMeasurement =
+                    measurement;
+
+            }
+
+        }
+
+
+
+        // ==========================
+        // REFERENCE IMAGES
+        // ==========================
+
+        const referenceImages = [];
+
+
+        if(
+            Array.isArray(req.files) &&
+            req.files.length > 0
+        ){
+
+            for(const file of req.files){
+
+                console.log(
+                    "UPLOADING FILE:",
+                    file.originalname
+                );
+
+
+                const imageUrl =
+                    await uploadPortfolioImage(
+                        file.buffer
+                    );
+
+
+                referenceImages.push(
+                    imageUrl
+                );
+
+            }
+
+        }
+
+
+
+        // ==========================
+        // CREATE ORDER
+        // ==========================
+
+        const order =
+            await Order.create({
+
+                customer:
+                    req.user._id,
+
+                tailor:
+                    gig.tailor,
+
+                gig:
+                    gig._id,
+
+                price:
+                    gig.price,
+
+                deliveryAddress:
+                    parsedDeliveryAddress,
+
+                measurement:
+                    parsedMeasurement,
+
+                referenceImages:
+                    referenceImages,
+
+                statusHistory:[
+                    {
+                        status:"pending"
+                    }
+                ]
+
+            });
+
+
+
+        console.log(
+            "ORDER CREATED:",
+            order._id
+        );
+
+
+
+        // ==========================
+        // CREATE NOTIFICATION
+        // ==========================
+
+        const notification =
+            await Notification.create({
+
+                user:
+                    gig.tailor,
+
+                message:
+                    "You received a new order",
+
+                type:
+                    "order"
+
+            });
+
+
+
+        // ==========================
+        // SOCKET NOTIFICATION
+        // ==========================
+
+        const io =
+            req.app.get("io");
+
+
+        if(io){
+
+            io.to(
+                `user_${gig.tailor}`
+            ).emit(
+
+                "receive_notification",
+
+                notification
+
             );
 
         }
 
-    }
 
 
-
-    // ==========================
-    // PARSE JSON DATA
-    // ==========================
-
-    let parsedDeliveryAddress =
-        deliveryAddress;
+        console.log(
+            "========== CREATE ORDER SUCCESS =========="
+        );
 
 
-    let parsedMeasurement =
-        measurement;
+        return res.status(201).json({
 
+            message:
+                "Order created successfully",
 
-    if(
-        typeof deliveryAddress === "string"
-    ){
-
-        parsedDeliveryAddress =
-            JSON.parse(
-                deliveryAddress
-            );
-
-    }
-
-
-    if(
-        typeof measurement === "string"
-    ){
-
-        parsedMeasurement =
-            JSON.parse(
-                measurement
-            );
-
-    }
-
-
-
-    const order = await Order.create({
-
-        customer:req.user._id,
-
-        tailor:gig.tailor,
-
-        gig:gig._id,
-
-        price:gig.price,
-
-        deliveryAddress:
-            parsedDeliveryAddress,
-
-        measurement:
-            parsedMeasurement || {},
-
-        referenceImages,
-
-        // Initial order tracking history
-        statusHistory:[
-            {
-                status:"pending"
-            }
-        ]
-
-    });
-
-
-
-    // ==========================
-    // CREATE NOTIFICATION
-    // ==========================
-
-    const notification =
-        await Notification.create({
-
-            user:gig.tailor,
-
-            message:"You received a new order",
-
-            type:"order"
+            order
 
         });
 
 
-
-    // ==========================
-    // LIVE SOCKET NOTIFICATION
-    // ==========================
-
-    const io =
-        req.app.get("io");
+    }
+    catch(error){
 
 
-    if(io){
-
-        io.to(
-            `user_${gig.tailor}`
-        ).emit(
-
-            "receive_notification",
-
-            notification
-
+        console.error(
+            "========== CREATE ORDER ERROR =========="
         );
+
+        console.error(
+            error
+        );
+
+        console.error(
+            "ERROR MESSAGE:",
+            error.message
+        );
+
+        console.error(
+            "ERROR STACK:",
+            error.stack
+        );
+
+
+        return res.status(500).json({
+
+            message:
+                error.message ||
+                "Server error"
+
+        });
 
     }
 
-
-
-    res.status(201).json({
-
-        message:"Order created successfully",
-
-        order
-
-    });
-
-
-}
-
-
-
-catch(error){
-
-    console.log(
-        "Create order error:",
-        error
-    );
-
-
-    res.status(500).json({
-
-        message:"Server error"
-
-    });
-
-}
-
 };
-
 
 
 
