@@ -1,7 +1,6 @@
 const axios = require("axios");
 
 
-
 let bkashToken = "";
 
 
@@ -19,22 +18,28 @@ const getBkashToken = async()=>{
 
 
         {
-            app_key: process.env.BKASH_APP_KEY,
+            app_key:
+                process.env.BKASH_APP_KEY,
 
-            app_secret: process.env.BKASH_APP_SECRET
+            app_secret:
+                process.env.BKASH_APP_SECRET
         },
 
 
         {
             headers:{
 
-                "Content-Type":"application/json",
+                "Content-Type":
+                    "application/json",
 
-                "Accept":"application/json",
+                "Accept":
+                    "application/json",
 
-                username: process.env.BKASH_USERNAME,
+                username:
+                    process.env.BKASH_USERNAME,
 
-                password: process.env.BKASH_PASSWORD
+                password:
+                    process.env.BKASH_PASSWORD
 
             }
         }
@@ -42,13 +47,15 @@ const getBkashToken = async()=>{
     );
 
 
-    bkashToken = response.data.id_token;
+    bkashToken =
+        response.data.id_token;
 
 
     return bkashToken;
 
 
 };
+
 
 
 
@@ -69,6 +76,11 @@ const createBkashPayment = async(
 )=>{
 
 
+    const callbackURL =
+        `${process.env.BACKEND_URL}/api/payment/callback`;
+
+
+
     const response = await axios.post(
 
 
@@ -79,39 +91,41 @@ const createBkashPayment = async(
 
             mode:"0011",
 
-            payerReference:orderId,
+            payerReference:
+                orderId.toString(),
 
-            callbackURL:
-            "http://localhost:5000/api/payment/callback",
+            callbackURL,
 
-            amount:amount.toString(),
+            amount:
+                amount.toString(),
 
             currency:"BDT",
 
             intent:"sale",
 
-            merchantInvoiceNumber:orderId
+            merchantInvoiceNumber:
+                orderId.toString()
 
         },
 
 
         {
 
-
             headers:{
 
+                "Content-Type":
+                    "application/json",
 
-                "Content-Type":"application/json",
+                "Accept":
+                    "application/json",
 
-                "Accept":"application/json",
-
-                Authorization:`Bearer ${token}`,
+                Authorization:
+                    token,
 
                 "X-APP-Key":
-                process.env.BKASH_APP_KEY
+                    process.env.BKASH_APP_KEY
 
             }
-
 
         }
 
@@ -128,10 +142,73 @@ const createBkashPayment = async(
 
 
 
+
+// ==========================
+// EXECUTE BKASH PAYMENT
+// ==========================
+
+const executeBkashPayment = async(
+
+    token,
+
+    paymentID
+
+)=>{
+
+
+    const response = await axios.post(
+
+
+        `${process.env.BKASH_BASE_URL}/tokenized/checkout/execute`,
+
+
+        {
+
+            paymentID
+
+        },
+
+
+        {
+
+            headers:{
+
+                "Content-Type":
+                    "application/json",
+
+                "Accept":
+                    "application/json",
+
+                Authorization:
+                    token,
+
+                "X-APP-Key":
+                    process.env.BKASH_APP_KEY
+
+            }
+
+        }
+
+
+    );
+
+
+    return response.data;
+
+
+};
+
+
+
+
+
+
 module.exports={
 
     getBkashToken,
 
-    createBkashPayment
+    createBkashPayment,
+
+    executeBkashPayment
 
 };

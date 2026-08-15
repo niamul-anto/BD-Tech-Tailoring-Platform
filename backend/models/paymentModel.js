@@ -1,69 +1,112 @@
-const mongoose = require("mongoose");
+const express = require("express");
 
 
-const paymentSchema = new mongoose.Schema(
-{
-
-    order:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Order",
-        required:true
-    },
+const router = express.Router();
 
 
-    customer:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required:true
-    },
+const authMiddleware =
+    require("../middleware/authMiddleware");
 
 
-    paymentMethod:{
-        type:String,
-        enum:[
-            "bkash",
-            "nagad"
-        ],
-        required:true
-    },
+const roleMiddleware =
+    require("../middleware/roleMiddleware");
 
 
-    paymentStatus:{
-        type:String,
-        enum:[
-            "initiated",
-            "paid",
-            "failed"
-        ],
-        default:"initiated"
-    },
+
+const {
+
+    createPayment,
+
+    bkashCallback,
+
+    getMyPayments,
+
+    getTailorEarnings
+
+} = require("../controllers/paymentController");
 
 
-    paymentId:{
-        type:String
-    },
 
 
-    transactionId:{
-        type:String
-    },
 
+// ==========================
+// CREATE PAYMENT
+// CUSTOMER ONLY
+// ==========================
 
-    amount:{
-        type:Number,
-        required:true
-    }
+router.post(
 
+    "/create",
 
-},
-{
-    timestamps:true
-}
+    authMiddleware,
+
+    roleMiddleware("customer"),
+
+    createPayment
 
 );
 
 
-module.exports = mongoose.model(
-    "Payment",
-    paymentSchema
+
+
+
+// ==========================
+// BKASH CALLBACK
+// PUBLIC ROUTE
+// ==========================
+
+// IMPORTANT:
+// Do NOT put authMiddleware here.
+// bKash redirects the browser to this URL.
+
+router.get(
+
+    "/callback",
+
+    bkashCallback
+
 );
+
+
+
+
+
+// ==========================
+// CUSTOMER PAYMENT HISTORY
+// ==========================
+
+router.get(
+
+    "/my-payments",
+
+    authMiddleware,
+
+    roleMiddleware("customer"),
+
+    getMyPayments
+
+);
+
+
+
+
+
+// ==========================
+// TAILOR EARNINGS
+// ==========================
+
+router.get(
+
+    "/earnings",
+
+    authMiddleware,
+
+    roleMiddleware("tailor"),
+
+    getTailorEarnings
+
+);
+
+
+
+module.exports = router;

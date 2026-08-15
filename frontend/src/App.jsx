@@ -38,7 +38,18 @@ import CustomerTailorDetails from "./pages/CustomerTailorDetails";
 import CustomerHomeMeasurement from "./pages/CustomerHomeMeasurement";
 import CustomerHomeMeasurements from "./pages/CustomerHomeMeasurements";
 
+
+// ==========================
+// PAYMENT PAGES
+// ==========================
+
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentFail from "./pages/PaymentFail";
+import PaymentCancel from "./pages/PaymentCancel";
+
+
 import ProtectedRoute from "./routes/ProtectedRoute";
+
 
 
 function App(){
@@ -712,6 +723,69 @@ function App(){
                     >
 
                         <AdminPayments />
+
+                    </ProtectedRoute>
+
+                }
+            />
+
+
+
+            {/* ==========================
+                PAYMENT SUCCESS
+            ========================== */}
+
+            <Route
+                path="/payment/success"
+                element={
+
+                    <ProtectedRoute
+                        allowedRoles={["customer"]}
+                    >
+
+                        <PaymentSuccess />
+
+                    </ProtectedRoute>
+
+                }
+            />
+
+
+
+            {/* ==========================
+                PAYMENT FAILED
+            ========================== */}
+
+            <Route
+                path="/payment/fail"
+                element={
+
+                    <ProtectedRoute
+                        allowedRoles={["customer"]}
+                    >
+
+                        <PaymentFail />
+
+                    </ProtectedRoute>
+
+                }
+            />
+
+
+
+            {/* ==========================
+                PAYMENT CANCELLED
+            ========================== */}
+
+            <Route
+                path="/payment/cancel"
+                element={
+
+                    <ProtectedRoute
+                        allowedRoles={["customer"]}
+                    >
+
+                        <PaymentCancel />
 
                     </ProtectedRoute>
 
