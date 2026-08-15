@@ -1,23 +1,16 @@
 const express = require("express");
 
-
 const router = express.Router();
 
 
-const authMiddleware =
-    require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/authMiddleware");
 
-
-const roleMiddleware =
-    require("../middleware/roleMiddleware");
-
+const roleMiddleware = require("../middleware/roleMiddleware");
 
 
 const {
 
     createPayment,
-
-    bkashCallback,
 
     getMyPayments,
 
@@ -27,53 +20,16 @@ const {
 
 
 
-
-
-// ==========================
-// CREATE PAYMENT
-// CUSTOMER ONLY
-// ==========================
+// Create Payment
 
 router.post(
-
     "/create",
-
     authMiddleware,
-
     roleMiddleware("customer"),
-
     createPayment
-
 );
 
-
-
-
-
-// ==========================
-// BKASH CALLBACK
-// PUBLIC ROUTE
-// ==========================
-
-// IMPORTANT:
-// Do NOT put authMiddleware here.
-// bKash redirects the browser to this URL.
-
-router.get(
-
-    "/callback",
-
-    bkashCallback
-
-);
-
-
-
-
-
-// ==========================
-// CUSTOMER PAYMENT HISTORY
-// ==========================
+// Customer Payment History
 
 router.get(
 
@@ -87,13 +43,7 @@ router.get(
 
 );
 
-
-
-
-
-// ==========================
-// TAILOR EARNINGS
-// ==========================
+// Tailor Earnings
 
 router.get(
 
@@ -106,7 +56,5 @@ router.get(
     getTailorEarnings
 
 );
-
-
 
 module.exports = router;
