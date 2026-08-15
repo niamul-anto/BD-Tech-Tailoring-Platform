@@ -912,3 +912,204 @@
 
     cursor:not-allowed;
 }
+
+/* =====================================================
+   CUSTOMER ORDER REFERENCE DESIGN
+===================================================== */
+
+.customer-reference-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:12px;
+}
+
+
+.customer-reference-header h3{
+
+    margin:0;
+}
+
+
+.customer-reference-count{
+
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:9px;
+
+    font-weight:700;
+}
+
+
+
+/* ==========================
+   IMAGE GRID
+========================== */
+
+.customer-reference-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:10px;
+}
+
+
+
+/* ==========================
+   IMAGE CARD
+========================== */
+
+.customer-reference-item{
+
+    position:relative;
+
+    display:block;
+
+    overflow:hidden;
+
+    aspect-ratio:4/3;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    background:#f9fafb;
+
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+
+.customer-reference-item img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.customer-reference-item:hover img{
+
+    transform:scale(1.04);
+}
+
+
+
+/* ==========================
+   HOVER OVERLAY
+========================== */
+
+.customer-reference-overlay{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    padding:8px;
+
+    background:
+        rgba(17,24,39,0.82);
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:
+        translateY(100%);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.customer-reference-item:hover
+.customer-reference-overlay{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1050px){
+
+    .customer-reference-grid{
+
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .customer-reference-grid{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .customer-reference-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .customer-reference-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+}

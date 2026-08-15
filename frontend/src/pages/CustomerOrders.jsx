@@ -993,6 +993,99 @@ const CustomerOrders = () => {
                                             </div>
 
 
+                                            {/* ==========================
+                                                REFERENCE DESIGN
+                                            ========================== */}
+
+                                            <div className="customer-order-detail-section">
+
+                                                <div className="customer-reference-header">
+
+                                                    <h3>
+                                                        Reference Design
+                                                    </h3>
+
+
+                                                    {
+                                                        Array.isArray(order.referenceImages) &&
+                                                        order.referenceImages.length > 0
+                                                        && (
+
+                                                            <span className="customer-reference-count">
+
+                                                                {
+                                                                    order.referenceImages.length
+                                                                }
+
+                                                                {
+                                                                    order.referenceImages.length === 1
+                                                                    ? " Image"
+                                                                    : " Images"
+                                                                }
+
+                                                            </span>
+
+                                                        )
+                                                    }
+
+                                                </div>
+
+
+                                                {
+                                                    Array.isArray(order.referenceImages) &&
+                                                    order.referenceImages.length > 0
+                                                    ? (
+
+                                                        <div className="customer-reference-grid">
+
+                                                            {
+                                                                order.referenceImages.map(
+                                                                    (image,index) => (
+
+                                                                        <a
+                                                                            key={`${image}-${index}`}
+                                                                            href={image}
+                                                                            target="_blank"
+                                                                            rel="noreferrer"
+                                                                            className="customer-reference-item"
+                                                                        >
+
+                                                                            <img
+                                                                                src={image}
+                                                                                alt={
+                                                                                    `Reference design ${index + 1}`
+                                                                                }
+                                                                            />
+
+                                                                            <div className="customer-reference-overlay">
+
+                                                                                View Full Image
+
+                                                                            </div>
+
+                                                                        </a>
+
+                                                                    )
+                                                                )
+                                                            }
+
+                                                        </div>
+
+                                                    )
+                                                    : (
+
+                                                        <p className="customer-order-empty-value">
+
+                                                            No reference design provided.
+
+                                                        </p>
+
+                                                    )
+                                                }
+
+                                            </div>
+
+
 
 
 
