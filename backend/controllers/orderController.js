@@ -3,6 +3,11 @@ const Gig = require("../models/Gig");
 const Notification = require("../models/Notification");
 const Review = require("../models/Review");
 
+const {
+    uploadPortfolioImage
+} = require("../utils/uploadToCloudinary");
+
+
 
 // =======================
 // CREATE ORDER
@@ -36,6 +41,73 @@ try{
 
 
 
+    // ==========================
+    // REFERENCE IMAGES
+    // ==========================
+
+    const referenceImages = [];
+
+
+    if(
+        req.files &&
+        req.files.length > 0
+    ){
+
+        for(const file of req.files){
+
+            const imageUrl =
+                await uploadPortfolioImage(
+                    file.buffer
+                );
+
+
+            referenceImages.push(
+                imageUrl
+            );
+
+        }
+
+    }
+
+
+
+    // ==========================
+    // PARSE JSON DATA
+    // ==========================
+
+    let parsedDeliveryAddress =
+        deliveryAddress;
+
+
+    let parsedMeasurement =
+        measurement;
+
+
+    if(
+        typeof deliveryAddress === "string"
+    ){
+
+        parsedDeliveryAddress =
+            JSON.parse(
+                deliveryAddress
+            );
+
+    }
+
+
+    if(
+        typeof measurement === "string"
+    ){
+
+        parsedMeasurement =
+            JSON.parse(
+                measurement
+            );
+
+    }
+
+
+
     const order = await Order.create({
 
         customer:req.user._id,
@@ -46,9 +118,13 @@ try{
 
         price:gig.price,
 
-        deliveryAddress,
+        deliveryAddress:
+            parsedDeliveryAddress,
 
-        measurement,
+        measurement:
+            parsedMeasurement || {},
+
+        referenceImages,
 
         // Initial order tracking history
         statusHistory:[
@@ -61,17 +137,44 @@ try{
 
 
 
-    // Create notification for tailor
+    // ==========================
+    // CREATE NOTIFICATION
+    // ==========================
 
-    await Notification.create({
+    const notification =
+        await Notification.create({
 
-        user:gig.tailor,
+            user:gig.tailor,
 
-        message:"You received a new order",
+            message:"You received a new order",
 
-        type:"order"
+            type:"order"
 
-    });
+        });
+
+
+
+    // ==========================
+    // LIVE SOCKET NOTIFICATION
+    // ==========================
+
+    const io =
+        req.app.get("io");
+
+
+    if(io){
+
+        io.to(
+            `user_${gig.tailor}`
+        ).emit(
+
+            "receive_notification",
+
+            notification
+
+        );
+
+    }
 
 
 
@@ -90,7 +193,10 @@ try{
 
 catch(error){
 
-    console.log(error);
+    console.log(
+        "Create order error:",
+        error
+    );
 
 
     res.status(500).json({
@@ -102,6 +208,7 @@ catch(error){
 }
 
 };
+
 
 
 
@@ -239,6 +346,7 @@ catch(error){
 
 
 
+
 // ==========================
 // GET TAILOR ORDERS
 // ==========================
@@ -297,6 +405,7 @@ catch(error){
 }
 
 };
+
 
 
 
@@ -438,15 +547,35 @@ try{
 
     if(message){
 
-        await Notification.create({
+        const notification =
+            await Notification.create({
 
-            user:order.customer,
+                user:order.customer,
 
-            message:message,
+                message:message,
 
-            type:"order"
+                type:"order"
 
-        });
+            });
+
+
+        const io =
+            req.app.get("io");
+
+
+        if(io){
+
+            io.to(
+                `user_${order.customer}`
+            ).emit(
+
+                "receive_notification",
+
+                notification
+
+            );
+
+        }
 
     }
 
@@ -478,6 +607,7 @@ catch(error){
 }
 
 };
+
 
 
 
@@ -587,6 +717,7 @@ catch(error){
 
 
 
+
 // ==========================
 // UPDATE PAYMENT STATUS
 // ==========================
@@ -667,6 +798,7 @@ catch(error){
 }
 
 };
+
 
 
 

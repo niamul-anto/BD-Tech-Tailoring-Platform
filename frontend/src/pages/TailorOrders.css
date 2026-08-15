@@ -832,3 +832,218 @@
     }
 
 }
+
+/* ==========================
+   REFERENCE DESIGN
+========================== */
+
+.tailor-reference-section{
+    margin-top:18px;
+
+    padding:18px;
+
+    border:1px solid #f1f5f9;
+    border-radius:10px;
+
+    background:#ffffff;
+}
+
+
+.tailor-reference-header{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:14px;
+}
+
+
+.tailor-reference-header h3{
+    margin:0;
+
+    font-size:15px;
+
+    color:#1f2937;
+}
+
+
+.tailor-reference-header > span{
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+
+
+/* ==========================
+   REFERENCE IMAGE GRID
+========================== */
+
+.tailor-reference-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:10px;
+}
+
+
+.tailor-reference-image{
+    position:relative;
+
+    height:130px;
+
+    overflow:hidden;
+
+    border:1px solid #e5e7eb;
+    border-radius:9px;
+
+    background:#f3f4f6;
+
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+
+.tailor-reference-image img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.tailor-reference-image:hover img{
+    transform:scale(1.05);
+}
+
+
+
+/* ==========================
+   IMAGE HOVER OVERLAY
+========================== */
+
+.tailor-reference-overlay{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:10px;
+
+    background:
+        rgba(17,24,39,0.68);
+
+    color:#ffffff;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    opacity:0;
+
+    transition:
+        opacity 0.2s ease;
+}
+
+
+.tailor-reference-image:hover
+.tailor-reference-overlay{
+    opacity:1;
+}
+
+
+
+/* ==========================
+   NO REFERENCE IMAGE
+========================== */
+
+.tailor-no-reference{
+    margin:0;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    background:#f9fafb;
+
+    color:#9ca3af;
+
+    font-size:12px;
+
+    font-style:italic;
+}
+
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1050px){
+
+    .tailor-reference-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .tailor-reference-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+
+    .tailor-reference-image{
+        height:150px;
+    }
+
+
+    .tailor-reference-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .tailor-reference-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .tailor-reference-image{
+        height:220px;
+    }
+
+}

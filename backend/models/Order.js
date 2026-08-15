@@ -43,6 +43,17 @@ const orderSchema = new mongoose.Schema(
     },
 
 
+    // ==========================
+    // REFERENCE DESIGN IMAGES
+    // ==========================
+
+    referenceImages:[
+        {
+            type:String
+        }
+    ],
+
+
     status:{
         type:String,
         enum:[

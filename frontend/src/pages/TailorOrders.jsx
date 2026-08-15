@@ -24,6 +24,7 @@ const TailorOrders = () => {
         unreadCount: notificationUnreadCount
     } = useNotifications();
 
+
     // ==========================
     // GLOBAL MESSAGES
     // ==========================
@@ -91,6 +92,7 @@ const TailorOrders = () => {
         }
 
     };
+
 
 
     useEffect(() => {
@@ -414,6 +416,7 @@ const TailorOrders = () => {
                         Orders
                     </button>
 
+
                     <button
                         onClick={() =>
                             navigate("/tailor/home-measurements")
@@ -421,6 +424,7 @@ const TailorOrders = () => {
                     >
                         Home Measurement
                     </button>
+
 
                     <button
                         onClick={() =>
@@ -891,6 +895,113 @@ const TailorOrders = () => {
 
 
                                         </div>
+
+
+                                    </div>
+
+
+
+
+
+                                    {/* ==========================
+                                        REFERENCE DESIGN
+                                    ========================== */}
+
+                                    <div className="tailor-reference-section">
+
+
+                                        <div className="tailor-reference-header">
+
+
+                                            <h3>
+                                                Reference Design
+                                            </h3>
+
+
+                                            {
+                                                order.referenceImages &&
+                                                order.referenceImages.length > 0
+                                                && (
+
+                                                    <span>
+
+                                                        {
+                                                            order.referenceImages.length
+                                                        } Image{
+                                                            order.referenceImages.length > 1
+                                                            ? "s"
+                                                            : ""
+                                                        }
+
+                                                    </span>
+
+                                                )
+                                            }
+
+
+                                        </div>
+
+
+
+                                        {
+                                            order.referenceImages &&
+                                            order.referenceImages.length > 0
+                                            ? (
+
+                                                <div className="tailor-reference-grid">
+
+
+                                                    {
+                                                        order.referenceImages.map(
+                                                            (
+                                                                image,
+                                                                index
+                                                            ) => (
+
+                                                                <a
+                                                                    key={`${image}-${index}`}
+                                                                    href={image}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="tailor-reference-image"
+                                                                >
+
+
+                                                                    <img
+                                                                        src={image}
+                                                                        alt={
+                                                                            `Reference design ${index + 1}`
+                                                                        }
+                                                                    />
+
+
+                                                                    <div className="tailor-reference-overlay">
+
+                                                                        View Full Image
+
+                                                                    </div>
+
+
+                                                                </a>
+
+                                                            )
+                                                        )
+                                                    }
+
+
+                                                </div>
+
+                                            )
+                                            : (
+
+                                                <p className="tailor-no-reference">
+
+                                                    No reference design provided by customer.
+
+                                                </p>
+
+                                            )
+                                        }
 
 
                                     </div>

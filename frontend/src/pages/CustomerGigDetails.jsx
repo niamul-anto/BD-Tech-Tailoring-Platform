@@ -47,6 +47,17 @@ const CustomerGigDetails = () => {
         useState(false);
 
 
+    // ==========================
+    // REFERENCE IMAGES
+    // ==========================
+
+    const [referenceImages, setReferenceImages] =
+        useState([]);
+
+    const [referencePreviews, setReferencePreviews] =
+        useState([]);
+
+
     const [measurement, setMeasurement] = useState({
 
         chest:"",
@@ -292,6 +303,177 @@ const CustomerGigDetails = () => {
 
 
     // ==========================
+    // REFERENCE IMAGE CHANGE
+    // ==========================
+
+    const handleReferenceImagesChange = (e) => {
+
+        const selectedFiles =
+            Array.from(
+                e.target.files || []
+            );
+
+
+        const allowedTypes = [
+
+            "image/jpeg",
+            "image/jpg",
+            "image/png",
+            "image/webp"
+
+        ];
+
+
+        const validFiles =
+            selectedFiles.filter(
+                (file) => {
+
+                    if(
+                        !allowedTypes.includes(
+                            file.type
+                        )
+                    ){
+
+                        alert(
+                            `${file.name} is not a supported image.`
+                        );
+
+                        return false;
+
+                    }
+
+
+                    if(
+                        file.size >
+                        5 * 1024 * 1024
+                    ){
+
+                        alert(
+                            `${file.name} is larger than 5 MB.`
+                        );
+
+                        return false;
+
+                    }
+
+
+                    return true;
+
+                }
+            );
+
+
+        const remainingSlots =
+            5 - referenceImages.length;
+
+
+        if(remainingSlots <= 0){
+
+            alert(
+                "You can upload maximum 5 reference images."
+            );
+
+            e.target.value = "";
+
+            return;
+
+        }
+
+
+        const filesToAdd =
+            validFiles.slice(
+                0,
+                remainingSlots
+            );
+
+
+        if(
+            validFiles.length >
+            remainingSlots
+        ){
+
+            alert(
+                "You can upload maximum 5 reference images."
+            );
+
+        }
+
+
+        setReferenceImages(
+            (previous) => [
+                ...previous,
+                ...filesToAdd
+            ]
+        );
+
+
+        const previews =
+            filesToAdd.map(
+                (file) =>
+                    URL.createObjectURL(file)
+            );
+
+
+        setReferencePreviews(
+            (previous) => [
+                ...previous,
+                ...previews
+            ]
+        );
+
+
+        e.target.value = "";
+
+    };
+
+
+
+    // ==========================
+    // REMOVE REFERENCE IMAGE
+    // ==========================
+
+    const handleRemoveReferenceImage = (
+        index
+    ) => {
+
+        setReferencePreviews(
+            (previous) => {
+
+                const preview =
+                    previous[index];
+
+
+                if(preview){
+
+                    URL.revokeObjectURL(
+                        preview
+                    );
+
+                }
+
+
+                return previous.filter(
+                    (_, currentIndex) =>
+                        currentIndex !== index
+                );
+
+            }
+        );
+
+
+        setReferenceImages(
+            (previous) =>
+                previous.filter(
+                    (_, currentIndex) =>
+                        currentIndex !== index
+                )
+        );
+
+    };
+
+
+
+    // ==========================
     // FAVORITE TOGGLE
     // ==========================
 
@@ -471,20 +653,55 @@ const CustomerGigDetails = () => {
             );
 
 
-            const response = await api.post(
-                "/orders",
-                {
+            // ==========================
+            // CREATE FORM DATA
+            // ==========================
 
-                    gigId:
-                        gig._id,
+            const formData =
+                new FormData();
 
-                    deliveryAddress:
-                        selectedAddress,
 
-                    measurement:
-                        cleanedMeasurement
+            formData.append(
+                "gigId",
+                gig._id
+            );
+
+
+            formData.append(
+                "deliveryAddress",
+                JSON.stringify(
+                    selectedAddress
+                )
+            );
+
+
+            formData.append(
+                "measurement",
+                JSON.stringify(
+                    cleanedMeasurement
+                )
+            );
+
+
+            referenceImages.forEach(
+                (file) => {
+
+                    formData.append(
+                        "referenceImages",
+                        file
+                    );
 
                 }
+            );
+
+
+            // ==========================
+            // CREATE ORDER
+            // ==========================
+
+            const response = await api.post(
+                "/orders",
+                formData
             );
 
 
@@ -1531,6 +1748,121 @@ const CustomerGigDetails = () => {
 
                             </div>
 
+
+                        </section>
+
+
+
+
+
+                        {/* ==========================
+                            REFERENCE DESIGN
+                        ========================== */}
+
+                        <section className="customer-order-card">
+
+
+                            <h2>
+                                Reference Design
+                            </h2>
+
+
+                            <p className="customer-order-card-subtitle">
+
+                                Upload photos of the dress or design
+                                you want the tailor to follow.
+                                This is optional.
+
+                            </p>
+
+
+                            <div className="customer-reference-upload">
+
+                                <label
+                                    className="customer-reference-upload-btn"
+                                    htmlFor="referenceImages"
+                                >
+
+                                    + Add Reference Images
+
+                                </label>
+
+
+                                <input
+                                    id="referenceImages"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    multiple
+                                    onChange={
+                                        handleReferenceImagesChange
+                                    }
+                                />
+
+
+                                <span className="customer-reference-help">
+
+                                    Maximum 5 images,
+                                    5 MB per image
+
+                                </span>
+
+                            </div>
+
+
+
+                            {
+                                referencePreviews.length > 0
+                                && (
+
+                                    <div className="customer-reference-preview-grid">
+
+                                        {
+                                            referencePreviews.map(
+                                                (preview,index) => (
+
+                                                    <div
+                                                        key={preview}
+                                                        className="customer-reference-preview"
+                                                    >
+
+                                                        <img
+                                                            src={preview}
+                                                            alt={
+                                                                `Reference ${index + 1}`
+                                                            }
+                                                        />
+
+
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                handleRemoveReferenceImage(
+                                                                    index
+                                                                )
+                                                            }
+                                                        >
+
+                                                            ×
+
+                                                        </button>
+
+                                                    </div>
+
+                                                )
+                                            )
+                                        }
+
+                                    </div>
+
+                                )
+                            }
+
+
+                            <div className="customer-reference-count">
+
+                                {referenceImages.length}/5 selected
+
+                            </div>
 
                         </section>
 
