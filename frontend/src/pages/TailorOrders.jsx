@@ -275,17 +275,25 @@ const TailorOrders = () => {
         }
 
 
-        const values =
-            Object.values(address)
-                .filter(
-                    (value) =>
-                        value &&
-                        typeof value !== "object"
-                );
+        const addressParts = [
+
+            address.house,
+            address.street,
+            address.area,
+            address.district,
+            address.division,
+            address.postalCode
+
+        ].filter(
+            (value) =>
+                value !== undefined &&
+                value !== null &&
+                value !== ""
+        );
 
 
-        return values.length > 0
-            ? values.join(", ")
+        return addressParts.length > 0
+            ? addressParts.join(", ")
             : "No delivery address";
 
     };
@@ -791,11 +799,10 @@ const TailorOrders = () => {
 
 
                                     {/* ==========================
-                                        ADDRESS + MEASUREMENT
+                                        DELIVERY ADDRESS
                                     ========================== */}
 
-                                    <div className="tailor-order-extra-grid">
-
+                                    <div className="tailor-order-address-section">
 
                                         <div className="tailor-order-extra-box">
 
@@ -815,11 +822,15 @@ const TailorOrders = () => {
 
                                         </div>
 
+                                    </div>
 
 
-                                        {/* ==========================
-                                            MEASUREMENT
-                                        ========================== */}
+
+                                    {/* ==========================
+                                        MEASUREMENT
+                                    ========================== */}
+
+                                    <div className="tailor-order-measurement-section">
 
                                         <div className="tailor-order-extra-box">
 
@@ -895,7 +906,6 @@ const TailorOrders = () => {
 
 
                                         </div>
-
 
                                     </div>
 

@@ -1047,3 +1047,268 @@
     }
 
 }
+
+/* =====================================================
+   UPDATED DELIVERY ADDRESS + MEASUREMENT LAYOUT
+===================================================== */
+
+
+/* ==========================
+   DELIVERY ADDRESS
+========================== */
+
+.tailor-order-address-section{
+    margin-top:18px;
+}
+
+
+.tailor-order-address-section
+.tailor-order-extra-box{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+
+    padding:16px;
+
+    border:1px solid #f1f5f9;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    align-self:flex-start;
+}
+
+
+.tailor-order-address-section
+.tailor-order-extra-box > span{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+.tailor-order-address-section
+.tailor-order-extra-box p{
+
+    margin:0;
+
+    color:#374151;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    word-break:break-word;
+}
+
+
+
+/* ==========================
+   MEASUREMENT SECTION
+========================== */
+
+.tailor-order-measurement-section{
+
+    margin-top:16px;
+
+}
+
+
+.tailor-order-measurement-section
+.tailor-order-extra-box{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+
+    padding:16px;
+
+    border:1px solid #f1f5f9;
+
+    border-radius:10px;
+
+    background:#ffffff;
+}
+
+
+.tailor-order-measurement-section
+.tailor-order-extra-box > span{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+
+/* ==========================
+   MEASUREMENT GRID
+========================== */
+
+.tailor-order-measurement-section
+.tailor-measurement-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:8px;
+}
+
+
+.tailor-order-measurement-section
+.tailor-measurement-item{
+
+    min-width:0;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#f9fafb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+
+.tailor-order-measurement-section
+.tailor-measurement-item > span{
+
+    color:#6b7280;
+
+    font-size:9px;
+
+    font-weight:500;
+}
+
+
+.tailor-order-measurement-section
+.tailor-measurement-item > strong{
+
+    color:#1f2937;
+
+    font-size:12px;
+
+    word-break:break-word;
+}
+
+
+
+/* ==========================
+   ADDITIONAL NOTES
+========================== */
+
+.tailor-order-measurement-section
+.tailor-measurement-item.notes{
+
+    grid-column:1/-1;
+
+}
+
+
+.tailor-order-measurement-section
+.tailor-measurement-item.notes > strong{
+
+    font-weight:500;
+
+    line-height:1.6;
+}
+
+
+
+/* ==========================
+   NO MEASUREMENT
+========================== */
+
+.tailor-order-measurement-section
+.tailor-no-measurement{
+
+    margin:0;
+
+    color:#9ca3af;
+
+    font-size:12px;
+
+    font-style:italic;
+}
+
+
+
+/* ==========================
+   TABLET
+========================== */
+
+@media(max-width:1050px){
+
+    .tailor-order-measurement-section
+    .tailor-measurement-grid{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+    }
+
+}
+
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    .tailor-order-address-section{
+
+        margin-top:15px;
+
+    }
+
+
+    .tailor-order-measurement-section{
+
+        margin-top:15px;
+
+    }
+
+
+    .tailor-order-measurement-section
+    .tailor-measurement-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .tailor-order-measurement-section
+    .tailor-measurement-item.notes{
+
+        grid-column:auto;
+
+    }
+
+}
