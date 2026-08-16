@@ -21,7 +21,8 @@ const reviewSchema = new mongoose.Schema(
     order:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Order",
-        required:true
+        required:true,
+        unique:true
     },
 
 
@@ -45,7 +46,6 @@ const reviewSchema = new mongoose.Schema(
 }
 
 );
-
 
 
 module.exports = mongoose.model(
