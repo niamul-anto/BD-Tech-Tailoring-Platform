@@ -215,20 +215,37 @@ try{
         "name email profileImage"
     )
 
+    .populate({
+        path:"order",
+
+        select:
+            "_id price status paymentStatus gig",
+
+        populate:{
+            path:"gig",
+
+            select:
+                "title price"
+        }
+    })
+
     .sort({
         createdAt:-1
     });
 
 
 
-    const totalReviews = reviews.length;
+    const totalReviews =
+        reviews.length;
 
 
 
-    const averageRating = totalReviews === 0
+    const averageRating =
+        totalReviews === 0
         ? 0
         : reviews.reduce(
-            (sum,review)=>sum + review.rating,
+            (sum,review)=>
+                sum + review.rating,
             0
         ) / totalReviews;
 
@@ -260,9 +277,7 @@ catch(error){
 
 }
 
-
 };
-
 
 
 

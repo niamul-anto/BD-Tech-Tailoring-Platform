@@ -652,6 +652,69 @@ const TailorReviews = () => {
 
                                                 </div>
 
+                                                {/* ==========================
+                                                    REVIEW ORDER / GIG INFO
+                                                ========================== */}
+
+                                                <div className="tailor-review-order-info">
+
+                                                    <div>
+
+                                                        <span>
+                                                            Gig
+                                                        </span>
+
+                                                        <strong>
+
+                                                            {
+                                                                review.order?.gig?.title ||
+                                                                "Unknown Gig"
+                                                            }
+
+                                                        </strong>
+
+                                                    </div>
+
+
+                                                    <div>
+
+                                                        <span>
+                                                            Order
+                                                        </span>
+
+                                                        <strong>
+
+                                                            #{
+                                                                review.order?._id
+                                                                ?.slice(-6)
+                                                                ?.toUpperCase()
+                                                                ||
+                                                                "-"
+                                                            }
+
+                                                        </strong>
+
+                                                    </div>
+
+
+                                                    <div>
+
+                                                        <span>
+                                                            Order Price
+                                                        </span>
+
+                                                        <strong>
+
+                                                            ৳{
+                                                                review.order?.price ||
+                                                                "-"
+                                                            }
+
+                                                        </strong>
+
+                                                    </div>
+
+                                                </div>
 
 
                                                 <div className="tailor-review-comment">
