@@ -188,17 +188,72 @@ const CustomerOrders = () => {
 
     const handlePayment = async (orderId) => {
 
-        console.log(
-            "Payment requested for order:",
-            orderId
-        );
+        const confirmed =
+            window.confirm(
+                "Confirm payment for this order?"
+            );
 
-        alert(
-            "Payment gateway coming soon."
-        );
+
+        if(!confirmed){
+
+            return;
+
+        }
+
+
+        try{
+
+            setPaymentLoading(
+                orderId
+            );
+
+
+            const response =
+                await api.put(
+                    `/orders/${orderId}/payment`
+                );
+
+
+            setOrders(
+                (previous) =>
+
+                    previous.map(
+                        (order) =>
+
+                            order._id === orderId
+                            ? {
+                                ...order,
+                                paymentStatus:
+                                    response.data.order.paymentStatus
+                            }
+                            : order
+
+                    )
+
+            );
+
+
+            alert(
+                response.data.message ||
+                "Payment completed successfully"
+            );
+
+        }
+        catch(error){
+
+            alert(
+                error.response?.data?.message ||
+                "Payment failed"
+            );
+
+        }
+        finally{
+
+            setPaymentLoading("");
+
+        }
 
     };
-
 
 
     // ==========================
