@@ -1,6 +1,6 @@
 const Review = require("../models/Review");
 const Order = require("../models/Order");
-
+const Notification = require("../models/Notification");
 
 
 
@@ -122,6 +122,41 @@ const review = await Review.create({
 
 });
 
+
+// ==========================
+// NOTIFY TAILOR ABOUT REVIEW
+// ==========================
+
+const notification =
+    await Notification.create({
+
+        user:order.tailor,
+
+        message:
+            `You received a new ${rating}-star review`,
+
+        type:"review"
+
+    });
+
+
+const io =
+    req.app.get("io");
+
+
+if(io){
+
+    io.to(
+        `user_${order.tailor}`
+    ).emit(
+
+        "receive_notification",
+
+        notification
+
+    );
+
+}
 
 
 res.status(201).json({

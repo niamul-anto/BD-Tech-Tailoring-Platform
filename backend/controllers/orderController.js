@@ -908,6 +908,40 @@ try{
 
     await order.save();
 
+    // ==========================
+    // NOTIFY TAILOR ABOUT PAYMENT
+    // ==========================
+
+    const notification =
+        await Notification.create({
+
+            user:order.tailor,
+
+            message:
+                `Payment of ৳${order.price} has been completed for your order`,
+
+            type:"payment"
+
+        });
+
+
+    const io =
+        req.app.get("io");
+
+
+    if(io){
+
+        io.to(
+            `user_${order.tailor}`
+        ).emit(
+
+            "receive_notification",
+
+            notification
+
+        );
+
+    }    
 
 
     res.status(200).json({
