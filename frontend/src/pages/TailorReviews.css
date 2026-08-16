@@ -600,3 +600,60 @@
     }
 
 }
+
+/* ==========================
+   REVIEW ORDER / GIG INFO
+========================== */
+
+.tailor-review-order-info{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-top:14px;
+
+    padding:12px;
+
+    border-radius:9px;
+
+    background:#f9fafb;
+}
+
+
+.tailor-review-order-info > div{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+
+.tailor-review-order-info span{
+    color:#6b7280;
+
+    font-size:9px;
+}
+
+
+.tailor-review-order-info strong{
+    color:#1f2937;
+
+    font-size:11px;
+
+    word-break:break-word;
+}
+
+
+@media(max-width:768px){
+
+    .tailor-review-order-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
